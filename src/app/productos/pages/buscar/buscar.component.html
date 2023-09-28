@@ -1,0 +1,222 @@
+
+
+
+
+<div class="container">
+
+
+  
+
+<div fxLayout="column">
+    
+  <div fxLayout="row wrap" 
+  fxLayout.xs="row wrap" 
+  fxFlexAlign="center"
+  >
+    
+  <div fxLayout="column" 
+  fxLayout.xs="column" 
+  fxFlexAlign="center"
+  >
+        <mat-form-field>
+            <input type="text"
+                   placeholder="Buscar por producto o productor"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="termino"
+                   autocomplete="off"
+                   (input)="buscando()">
+
+                   <!--[matAutocomplete]="auto"-->
+            <!--
+            <mat-autocomplete autoActiveFirstOption 
+                              #auto="matAutocomplete"
+                              (optionSelected)="opcionSeleccionada( $event )">
+
+              <mat-option *ngFor="let producto of productos" [value]="producto">
+                {{ producto.nombre }}
+              </mat-option>
+
+              <mat-option value="" *ngIf="termino.trim().length > 0 && productos.length == 0">
+                No se encontró nada con el término {{ termino }}
+              </mat-option>
+              
+
+            </mat-autocomplete>
+            -->
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column" 
+    fxLayout.xs="column" 
+    fxFlexAlign="center"
+    >
+
+
+    <div fxLayout="column" 
+    [ngClass]="{'caja-metodo': !categoria_elegida, 'caja-metodo-active': categoria_elegida}"
+    (click)="elegir_categoria()"
+   >
+     <p>Categoría</p>
+   </div>
+
+    </div>
+
+  </div>
+
+    <div fxLayout="row" 
+         fxLayout.xs="row" 
+         fxFlexAlign="center"
+         style="margin-top: -10px;"
+         >
+
+         <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !envio, 'caja-metodo-active': envio}"
+         (click)="filtrar_envio(productos)"
+        >
+            <mat-icon>markunread_mailbox</mat-icon>
+          <p>Envío</p>
+        </div>
+
+        <div fxLayout="column"
+        [ngClass]="{'caja-metodo': !recogida, 'caja-metodo-active': recogida}"
+        (click)="filtrar_recogida(productos,usuarios)"
+        >
+            <mat-icon>nature_people</mat-icon>
+          <p>Recoger</p>
+        </div>
+        
+
+        <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !busqueda_zonas, 'caja-metodo-active': busqueda_zonas}"
+         (click)="elegir_zona()"
+        >
+                    <mat-icon>location_city</mat-icon>
+          <p>{{titulo_zona}}</p>
+        </div>
+
+        <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !lugar_elegido, 'caja-metodo-active': lugar_elegido}"
+         (click)="openDialog()"
+         
+        > <!--(click)="openDialog()"-->
+                    <mat-icon>location_on</mat-icon>
+          <p>Ubicación</p>
+        </div>
+             
+
+    </div>
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     style="margin-top: 0px"
+     *ngIf="lugar_elegido">
+    
+     <!--<mat-chip (click)="openDialog()" *ngIf="40 > lugar_elegido!.place_name.length" class="matchip">{{direc}}<button matChipRemove (click)="borrar_ubicacion();recarga_lista()">
+      <mat-icon class="delete">cancel</mat-icon>
+    </button></mat-chip>
+     <mat-chip (click)="openDialog()" *ngIf="lugar_elegido!.place_name.length > 40" class="matchip">{{direc | slice:0:40}}...<button matChipRemove (click)="borrar_ubicacion();recarga_lista()">
+      <mat-icon class="delete">cancel</mat-icon>
+    </button></mat-chip>-->
+
+    <mat-chip  *ngIf="40 > lugar_elegido!.place_name.length" class="matchip">{{direc}}<button matChipRemove (click)="borrar_ubicacion();recarga_lista()" ><mat-icon class="delete">cancel</mat-icon>    </button></mat-chip>
+    <mat-chip  *ngIf="lugar_elegido!.place_name.length > 40" class="matchip">{{direc | slice:0:40}}...<button matChipRemove (click)="borrar_ubicacion();recarga_lista()"><mat-icon class="delete">cancel</mat-icon></button></mat-chip>
+
+
+    </div>
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     style="margin-top: 0px"
+     *ngIf="categoria_elegida">
+
+     <mat-chip (click)="elegir_categoria()"  class="matchip-categoria">{{categorias[categoria_elegida.id].text}}<button matChipRemove (click)="borrar_categoria();recarga_lista()">
+      <mat-icon class="delete">cancel</mat-icon>
+    </button></mat-chip>
+
+     
+    </div>
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     style="margin-top: 0px">
+
+     <div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.xl="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         fxLayoutAlign="center">
+
+         <button mat-flat-button [ngClass]="busqueda_productos ? 'active' : ''" (click)="buscar_productos()">Productos ({{productos.length}})</button>
+         <button mat-flat-button [ngClass]="busqueda_productores ? 'active' : ''" (click)="buscar_productores()">Productores ({{usuarios.length}})</button>
+         
+        </div>
+        
+
+    </div>
+
+    <mat-grid-list cols="1" *ngIf="!cargado && !productos ; else divProducto">
+      <mat-grid-tile>
+          <mat-spinner></mat-spinner>
+      </mat-grid-tile>
+    </mat-grid-list>
+    
+    <ng-template #divProducto >
+    
+      <p *ngIf="productos.length == 0" style="margin:auto;text-align:center;">No hay resultados para la búsqueda</p>
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     *ngIf="busqueda_productos">
+
+     
+
+    <div fxFlex="33"
+         fxFlex.lg="33"
+         fxFlex.xl="25"
+         fxFlex.sm="40"
+         fxFlex.xs="50"
+         fxLayoutAlign="center"
+         class="caja-producto"
+         
+         *ngFor="let producto of productos | slice:start:end; let i=index">
+       
+        <app-producto-tarjeta [producto]="producto"></app-producto-tarjeta>
+    </div>
+
+    </div>
+
+    </ng-template>
+
+    <div fxLayout="column wrap"
+         fxLayout.xs="column wrap"
+         fxLayoutAlign="center"
+         *ngIf="busqueda_productores"
+         >
+
+         <div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         *ngFor="let usuario of usuarios">
+
+         <app-item-productor [infoUser]="usuario"></app-item-productor>
+
+
+         </div>
+      </div>
+    
+
+
+
+</div>
+
+
+
+
+</div>

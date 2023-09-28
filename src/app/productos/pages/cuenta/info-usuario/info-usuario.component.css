@@ -1,0 +1,81 @@
+.imagen-perfil{
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+  }
+
+.imagen-recogida{
+  object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+  height: 200px;
+  width: 100%;
+}
+
+#boton-desactivar{
+   
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+}
+
+.boton-desactivar{
+  background-color: red !important;
+  color: white !important;
+  width: 100%;
+}
+
+h2{
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+.no-movil-dias{
+  display:none;
+}
+
+}
+
+.file-input {
+  display: none;
+  }
+
+.example-section{
+margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) and  (max-width: 1024px){
+.container{
+    padding-left: 20%;
+  padding-right: 20%;
+}
+
+.movil-dias{
+  display: none;
+}
+}
+
+@media screen and (min-width: 1024px){
+
+.container{
+    padding-left: 10%;
+  padding-right: 10%;
+}
+
+.movil-dias{
+  display: none;
+}
+}
+
+
+.horario{
+line-height:initial;
+}
+
+.recogida{
+margin-top: 10px;
+margin-bottom: 20px;
+}
+

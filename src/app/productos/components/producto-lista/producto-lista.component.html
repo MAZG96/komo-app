@@ -1,0 +1,9 @@
+<mat-selection-list #shoes multiple="false">
+    <mat-list-option *ngFor="let producto of productos">
+        <mat-grid-list cols="3" rowHeight="10vh" (click)="ir_producto(producto.id)">  
+            <mat-grid-tile ><img [src]="producto | imagen" onError="this.src='https://www.apikomolocalfoods.es/files/no-image.png'"></mat-grid-tile>  
+            <mat-grid-tile >{{producto.nombre}}</mat-grid-tile>
+            <mat-grid-tile ><mat-icon>edit</mat-icon></mat-grid-tile>
+        </mat-grid-list>
+    </mat-list-option>
+  </mat-selection-list>

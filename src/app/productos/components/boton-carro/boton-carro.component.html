@@ -1,0 +1,89 @@
+<mat-grid-list cols="1" *ngIf="!usuario ; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner [diameter]="20" ></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto>
+
+
+<div *ngIf="(usuario.zona != 0 || usuario.recogida != 0 || usuario.envio_individual != 0 || usuario.envio_frio != 0) && comprobar_dia_venta(usuario)">
+
+    <div *ngIf="esCarrito">
+        <mat-grid-list cols="3" rowHeight="2:2">  
+                <mat-grid-tile >
+                    <button ><mat-icon  aria-label="ADD_CART" class="boton-carrito"  (click)="remove()">remove</mat-icon></button>
+            </mat-grid-tile>
+                <mat-grid-tile class="cantidad-carrito"><h1>{{cantidad_producto}}</h1></mat-grid-tile>
+                <mat-grid-tile >
+                    <button><mat-icon aria-label="REMOVE_CART" class="boton-carrito"   (click)="add()">add</mat-icon></button>
+                </mat-grid-tile>
+            
+        </mat-grid-list>
+    </div>
+
+    <div *ngIf="cantidad_producto == 0 && esCarrito == false">
+        <mat-grid-list cols="3" rowHeight="2:2">
+            
+                <mat-grid-tile ></mat-grid-tile>
+                <mat-grid-tile> <mat-icon aria-hidden="false" (click)="add()"   class="boton-carro" aria-label="REMOVE_CART">add</mat-icon></mat-grid-tile>
+                <mat-grid-tile >
+                
+                    
+                    </mat-grid-tile>
+            
+        </mat-grid-list>
+    </div>
+
+    <div *ngIf="cantidad_producto > 0 && esCarrito == false">
+        <mat-grid-list cols="3" rowHeight="2:2">
+            
+                <mat-grid-tile >
+                    <button ><mat-icon  aria-label="ADD_CART"   class="boton-carro" (click)="remove()">remove</mat-icon>
+                    </button>
+                    </mat-grid-tile>
+                <mat-grid-tile >
+                    <h1  class="cantidad">{{cantidad_producto}}</h1></mat-grid-tile>
+                <mat-grid-tile >
+                    
+                    <mat-icon aria-label="REMOVE_CART" class="boton-carro"   (click)="add()">add</mat-icon>
+                    
+            </mat-grid-tile>
+            
+        </mat-grid-list>
+    </div>
+
+
+
+
+    <div *ngIf="cantidad_producto > 0 && esProducto == true" fxLayout="row wrap"
+        fxLayout.xs="row"
+        fxLayoutAlign="center"
+        style="transform: scale(1.1);"> 
+        
+                
+                    <button class="boton_carro" ><mat-icon  aria-label="ADD_CART"   class="boton-carro" (click)="remove()">remove</mat-icon>
+                    </button>
+                    
+                
+                    <h1  color="primary"  class="cantidad_p">{{cantidad_producto}}</h1>
+                
+                    <button class="boton_carro">
+                    <mat-icon aria-label="REMOVE_CART" class="boton-carro"  (click)="add()">add</mat-icon>
+                    </button>
+    </div>
+
+
+    <div *ngIf="cantidad_producto == 0 && esProducto == true" fxLayout="row wrap"
+        fxLayout.xs="row"
+        fxLayoutAlign="center"
+        style="width: 100%"> 
+
+        <button mat-raised-button style="background-color: white; width: 155px;" (click)="add()"><b>Añade a la cesta</b></button>
+                
+    </div>
+
+</div>
+
+</ng-template>

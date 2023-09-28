@@ -1,0 +1,32 @@
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+
+    <h3>Unificar pedidos</h3>
+
+    <h5>Elige tu Zona mas cercana</h5>
+
+    <mat-form-field>
+        <mat-label>Provincia *</mat-label>
+        <mat-select [(ngModel)]="prov" name="provincia" >
+            <mat-option *ngFor="let provincia of provincias" [value]="provincia" (click)="recargar_zonas()">
+                {{provincia}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field *ngIf="zonas.length != 0">
+        <mat-label>Zona *</mat-label>
+        <mat-select [(ngModel)]="zona.id" name="zona" >
+            <mat-option *ngFor="let item of zonas" [value]="item.id" (click)="get_zona()">
+                {{item.nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>        
+
+    <p *ngIf="zonas.length == 0 && prov != ''">No hay zonas disponibles en {{prov}}</p>
+
+    <button mat-raised-button (click)="elegir_zona()" [disabled]="zona.id == 0">Elegir zona</button>
+    <button mat-raised-button (click)="salir()" >Cerrar</button>
+
+
+</div>

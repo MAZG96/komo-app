@@ -1,0 +1,131 @@
+
+
+<mat-sidenav-container  fullscreen>
+  
+    
+    <mat-sidenav #sidenav mode="push" >
+        
+        <mat-toolbar color="primary" >
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a routerLink="./listado"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Listado de Héroes</span>
+            </a>
+
+            <a routerLink="./agregar"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span>Añadir Héroe</span>
+            </a>
+
+            <a routerLink="./buscar"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>search</mat-icon>
+                <span>Búscar Héroe</span>
+            </a>
+            
+        </mat-nav-list>
+        
+    </mat-sidenav>
+
+    <mat-toolbar #toolbarnav>
+        <button mat-icon-button
+                (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span class="spacer"></span>
+
+        <span>{{usuario.name}}</span>
+
+        <button mat-button
+        (click)="logout()">
+            Logout
+        </button>
+    </mat-toolbar>
+
+  
+    
+
+</mat-sidenav-container>
+
+
+<div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     class="headerNav">
+    
+    <button >
+        <mat-icon  *ngIf="router.url !== '/productos/listado'" class="material-icons color_blue" (click)="volver()" style="color: black;">keyboard_return</mat-icon>
+        <mat-icon  *ngIf="router.url === '/productos/listado'" class="material-icons color_blue" style="color:white" >keyboard_return</mat-icon>
+    </button>
+    <img src="https://komolocalfoods.com/assets/productos/komo-logo.png" width="90" style="margin: auto;margin-top:5px;text-align: center;" routerLink="/productos/listado" >
+    <button>
+        <mat-icon class="material-icons color_blue" style="color:white">logout</mat-icon>
+    </button>
+
+</div>
+
+<div style="padding: 25px">
+  
+</div>
+
+    <div [@routeAnimations]="prepareRoute(outlet)" class="content">
+        <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+
+    
+    <div class="spacing">
+  
+    </div>
+
+    
+
+<!--BARRA DE APLICACION-->
+<footer (click)="borrar_ref()" >
+    <mat-toolbar class="toolbarNav" >
+    <button   mat-flat-button routerLink="/" routerLinkActive="active-link" >
+        <img src="assets/images/ico-home.png" width="20" *ngIf="router.url === '/'">
+        <img src="assets/images/ico-home-outline.png" width="20" *ngIf="router.url !== '/'">
+      </button>
+
+      
+      <!--<button mat-flat-button routerLink="/productos/favoritos" routerLinkActive="active-link">
+        <mat-icon class="material-icons color_blue" *ngIf="router.url === '/productos/favoritos'">favorite
+        </mat-icon>
+        <mat-icon class="material-icons color_blue" *ngIf="router.url !== '/productos/favoritos'">favorite_outline
+        </mat-icon>
+      </button>-->
+      <button mat-flat-button routerLink="/productos/busqueda" routerLinkActive="add_circle">
+        <mat-icon class="icono-bold" *ngIf="router.url === '/productos/busqueda'">search
+        </mat-icon>
+        <mat-icon  *ngIf="router.url !== '/productos/busqueda'">search
+        </mat-icon>
+      </button>
+      <button mat-flat-button routerLink="/productos/cesta"  routerLinkActive="active-link">
+        <mat-icon  [matBadge]="n_productos_carrito"  matBadgeColor="accent" *ngIf="router.url === '/productos/cesta'">shopping_cart
+        </mat-icon>
+        <mat-icon  [matBadge]="n_productos_carrito" matBadgeColor="accent" *ngIf="router.url !== '/productos/cesta'">add_shopping_cart
+        </mat-icon>
+      </button>
+      <button mat-flat-button routerLink="/productos/cuenta" routerLinkActive="active-link">  
+        <img src="assets/images/ico-account.png" width="24" *ngIf="router.url === '/productos/cuenta'">
+        <img src="assets/images/ico-account-outline.png" width="24" *ngIf="router.url !== '/productos/cuenta'">
+      </button>
+
+
+    </mat-toolbar>
+</footer>

@@ -1,0 +1,5 @@
+.mat-card-sm-image{
+    width: 50%;    
+    height: 100px;
+    object-fit: cover;
+}

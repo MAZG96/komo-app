@@ -1,0 +1,76 @@
+
+<mat-grid-list cols="1" *ngIf="!producto && !infoUser; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto >
+
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     >
+
+    <div fxLayout="column"
+         fxLayout.xs="column">
+           
+        <img class="img-prod" [src]="producto.foto">
+    
+         <div fxFlex="50" style="padding-left: 20px;padding-right: 20px;">
+
+            <div class="atributos">
+
+
+                <h1>{{ producto.nombre | titlecase}}</h1>
+                <h2>{{ producto.precio }}€</h2>   
+                
+                <mat-divider></mat-divider>
+                <button mat-raised-button color="primary" [routerLink]="['/backoffice/productor', infoUser.id_usuario]"><b>Productor: </b>{{infoUser.nombre_empresa | titlecase}}</button>
+                <mat-divider></mat-divider>
+                
+                <mat-divider></mat-divider>
+                <h4><b>Descripción: </b>{{producto.descripcion}}</h4>
+
+
+                <mat-divider></mat-divider>
+                <h4><b>Categoría: </b>{{categorias[producto.id_categoria].text}}</h4>
+
+                <mat-divider></mat-divider>
+
+                <mat-divider></mat-divider>
+                <h4><b>Stock: </b>{{producto.stock}}</h4>
+
+                <mat-divider></mat-divider>
+
+                <h4 ><mat-icon >place</mat-icon>{{infoUser.ubicacion}}</h4>
+
+                <mat-divider></mat-divider>
+                <h4><b>Días publicados: </b>{{producto.dias_publicados}}</h4>
+
+
+                <mat-divider></mat-divider>
+
+
+            </div>
+            
+
+            
+
+         </div>
+
+         
+
+    </div>
+
+    </div>
+    
+    <div class="spacing">
+  
+    </div>
+
+</ng-template>
+
+

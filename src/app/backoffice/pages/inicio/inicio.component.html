@@ -1,0 +1,100 @@
+<mat-sidenav-container  fullscreen>
+  
+    <mat-sidenav #sidenav mode="push" >
+        
+        <mat-toolbar color="primary" >
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button
+                    (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a routerLink="./pedidos"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Pedidos</span>
+            </a>
+
+            <a routerLink="./productos"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Productos</span>
+            </a>
+
+            <a routerLink="./usuarios"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Usuarios</span>
+            </a>
+
+            <a routerLink="./inactivos"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Inactivos</span>
+            </a>
+
+            <a routerLink="./comentarios"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Comentarios</span>
+            </a>
+
+            <a routerLink="./zonas"
+               mat-list-item
+               (click)="sidenav.toggle()">
+                
+                <span>Listado de Zonas</span>
+            </a>
+            
+        </mat-nav-list>
+        
+    </mat-sidenav>
+
+    <mat-toolbar #toolbarnav>
+        <button mat-icon-button
+                (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        
+        <img src="assets/productos/komo-logo.png" width="90" style="margin: auto;">
+
+        
+    </mat-toolbar>
+
+<div class="container">
+    <div fxLayout="column wrap"
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px">
+
+
+    <div fxFlex="70"
+        fxFlex.lg="70"
+        fxFlex.sm="70"
+        >
+    
+        <router-outlet></router-outlet>
+    </div>
+    </div>
+</div>
+
+
+    
+
+</mat-sidenav-container>
+
+
+
+    
+
+

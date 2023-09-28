@@ -1,0 +1,18 @@
+.example-card {
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .mat-card-sm-image{
+    width: 50%;    
+    height: 100px;
+    object-fit: cover;
+}
+
+.example-section{
+  margin-bottom: -20px;
+}
+
+.checkbox-recoger{
+  color: black;
+}

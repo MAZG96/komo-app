@@ -1,0 +1,85 @@
+<mat-grid-list cols="1" *ngIf="!infoUser || !auth ; else divProducto">
+     <mat-grid-tile>
+         <mat-spinner></mat-spinner>
+     </mat-grid-tile>
+ </mat-grid-list>
+ 
+ <ng-template #divProducto >
+
+     <div class="container" >
+
+
+     <h1 style="text-align: center;padding-bottom: 20px;">Productor: #{{infoUser.nombre_empresa}}</h1>
+
+     
+
+     <div fxLayout="row wrap"
+          fxLayout.xs="row wrap"
+          fxLayoutAlign="center"
+          fxLayoutGap="5px">
+
+
+     <div fxFlex="25"
+     fxFlex.lg="25"
+     fxFlex.sm="50"
+     fxFlex.xs="100"
+     style="padding: 10px; border: 1px solid black"
+     >
+
+          <h3 style="text-align: center;">Datos del productor</h3>
+          <p>Nombre: {{infoUser.nombre}}</p>
+          <p>Empresa: {{infoUser.nombre_empresa}}</p>
+          
+          <a [href]="enlace_correo">{{auth.email}}</a><br>
+          <a [href]="enlace_telefono">{{infoUser.telefono_envio}}</a>
+          
+     </div>
+
+     
+     <div fxFlex="25"
+     fxFlex.lg="25"
+     fxFlex.sm="50"
+     fxFlex.xs="100"
+     style="padding: 10px; border: 1px solid black"
+     >
+
+
+     <h3 style="text-align: center;">Informacion de Recogida: </h3>
+     <p>Direccion: {{infoUser.calle}}, {{infoUser.piso}}</p>
+     <p>Ubicacion: {{infoUser.ubicacion}}</p>
+     <p>Horas de recogida: {{infoUser.horario}}</p>
+     
+     
+
+     </div>
+
+
+
+     <div fxFlex="100"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+     fxFlex.xs="100"
+     >
+     <h3 style="text-align: center;">Articulos en Venta: </h3>
+     </div>
+
+     <div fxFlex="50"
+          fxFlex.lg="50"
+          fxFlex.sm="50"
+          fxFlex.xs="100"
+          *ngFor="let item of productos">
+
+
+          <app-elemento-productos [item]="item"></app-elemento-productos>
+
+     </div>
+
+
+     
+     
+
+     </div>
+
+     </div>
+
+ </ng-template>

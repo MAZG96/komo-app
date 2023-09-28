@@ -1,0 +1,87 @@
+<mat-grid-list cols="1" *ngIf="!item_pedidos || !pedido; else divProducto">
+     <mat-grid-tile>
+         <mat-spinner></mat-spinner>
+     </mat-grid-tile>
+ </mat-grid-list>
+ 
+ <ng-template #divProducto >
+<div class="container" >
+
+
+     <h1 style="text-align: center;padding-bottom: 20px;">Resumen Pedido: #{{pedido.id}}</h1>
+
+    
+
+     <div fxLayout="row wrap"
+          fxLayout.xs="row wrap"
+          fxLayoutAlign="center"
+          fxLayoutGap="5px">
+
+          
+
+    
+
+     <div fxFlex="100"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+     fxFlex.xs="100"
+     style="padding: 10px; border: 1px solid black"
+     >
+
+     <h3 style="text-align: center;">Datos de Facturación</h3>
+     <p>Nombre: {{pedido.nombre}}</p>
+     <p>Apellidos: {{pedido.apellidos}}</p>
+     <p>Direccion: {{pedido.calle}}, {{pedido.piso}}, {{pedido.localidad}}, {{pedido.codigo_postal}}</p>
+     <p>Provincia: {{pedido.provincia}}</p>
+     <p>Telefono: {{pedido.telefono}}</p>
+     <p>Precio total: {{pedido.total}} €</p>
+
+     
+
+     </div>
+
+
+     <div fxFlex="100"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+     fxFlex.xs="100"
+     >
+     <h3 style="text-align: center;">Articulos del pedido: </h3>
+     </div>
+
+     <h4 style="text-align: center;" *ngIf="pedido.tipo_venta  == 0">Método Venta: Envío Individual</h4>
+     <h4 style="text-align: center;" *ngIf="pedido.tipo_venta  == 1">Método Venta: Envío Conjunto</h4>
+     <h4 style="text-align: center;" *ngIf="pedido.tipo_venta  == 2">Método Venta: Recogida</h4>
+     <h4 style="text-align: center;" *ngIf="pedido.tipo_venta  == 3">Método Venta: Frío</h4>
+
+    
+
+          <div
+          fxLayout="row wrap"
+          fxLayout.xs="row wrap"
+          fxLayoutAlign="center"
+          style="padding: 10px; border: 1px solid black"
+          >
+
+               <div fxFlex="100"
+                    fxFlex.lg="100"
+                    fxFlex.sm="100"
+                    fxFlex.xs="100"
+                    *ngFor="let item of item_pedidos">
+
+
+                    <app-item-pedido [item]="item" style="margin: 10px;"></app-item-pedido>
+
+               </div>
+
+          </div>
+
+
+
+     
+
+</div>
+
+</div>
+
+ </ng-template>

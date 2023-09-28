@@ -1,0 +1,83 @@
+<!--<div class="credit-card">
+    <div>
+        <div #example2cardnumber ></div>
+        <div #cardInfo ></div>
+
+        <div #example2cardexpiry ></div>
+
+        <div #example2cardcvc ></div>
+
+
+        <div class="error" *ngIf="cardError">
+            {{cardError}}
+        </div>
+    </div>
+
+    <button (click)="onClick()">Pagar</button>
+    
+</div>-->
+
+
+<div class="cell example example2" id="example-2">
+
+  <div #paymentrequestbutton >
+  </div>
+
+  <div class="bloque-tarjeta">
+  <div class="row">
+    <div class="field">
+      <input id="card_name" type="text" [(ngModel)]="titular_tarjeta" class="field" placeholder="Titular tarjeta"  />
+      <div class="baseline"></div>
+    </div>
+  </div>
+  
+
+    
+      <div class="row">
+        
+
+        <div class="field">
+          <div #example2cardnumber class="input empty"></div>
+          <label for="example2-card-number" data-tid="elements_examples.form.card_number_label">Número de Tarjeta</label>
+          <div class="baseline"></div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="field half-width">
+          <div #example2cardexpiry class="input empty"></div>
+          <label for="example2-card-expiry" data-tid="elements_examples.form.card_expiry_label">Caducidad</label>
+          <div class="baseline"></div>
+        </div>
+        <div class="field half-width">
+          <div #example2cardcvc class="input empty"></div>
+          <label for="example2-card-cvc" data-tid="elements_examples.form.card_cvc_label">CVC</label>
+          <div class="baseline"></div>
+        </div>
+      </div>
+    
+      <mat-grid-list cols="1" [diameter]="20" *ngIf="cargando_pago ; else divProducto">
+        <mat-grid-tile>
+            <mat-spinner></mat-spinner>
+        </mat-grid-tile>
+      </mat-grid-list>
+      
+    <ng-template #divProducto>
+      <button type="submit" data-tid="elements_examples.form.pay_button" (click)="onClick()">Pagar {{pedido.total | number: '.1-2'}}€</button>
+    </ng-template>
+
+      </div>
+
+      <div class="cuadro-mensaje">
+        <span class="message">{{cardError}}</span>
+      </div>
+
+      {{respuesta}}
+    
+    </div>
+
+
+      
+        
+
+  

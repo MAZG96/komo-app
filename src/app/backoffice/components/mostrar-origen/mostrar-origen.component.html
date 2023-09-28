@@ -1,0 +1,31 @@
+<mat-grid-list cols="1" *ngIf="!usuario ; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner [diameter]="70"></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+<ng-template #divProducto >
+
+<div fxFlex="100"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+     fxFlex.xs="100"
+     >
+
+     <h3 style="text-align: center;">Origen del Pedido</h3>
+     <p>Nombre: {{usuario.nombre}}</p>
+     <p>Dirección: {{usuario.calle}}</p>
+     <p>Código Postal: {{usuario.cp_envio}}</p>
+     <p>Descripción: {{usuario.descripcion}}</p>
+     <p>Peso Total: {{peso_total | number: '.1-2'}} Kg.</p>
+     <p>Precio Envío: {{precio_envio | number: '.1-2'}} €</p>
+     <p>Proteccion Consumidor (Comisión): {{calcular_comision() | number: '.1-2'}} €</p>
+
+
+     
+     <a [href]="enlace_correo">{{auth.email}}</a><br>
+     <a [href]="enlace_telefono">{{usuario.telefono_envio}}</a>
+
+
+     </div>
+
+</ng-template>

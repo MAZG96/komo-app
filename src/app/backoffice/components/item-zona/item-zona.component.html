@@ -1,0 +1,84 @@
+<div fxLayout="column"
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    class="caja"
+    >
+
+        <mat-form-field>
+            <input matInput
+                    type="text"
+                    [(ngModel)]="item.nombre"
+                    placeholder="Nombre Zona"
+                    max="500"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Provincia *</mat-label>
+        <select matNativeControl [(ngModel)]="item.provincia" name="provincia">
+            <option *ngFor="let provincia of provincias" [value]="provincia" >
+                {{provincia}}
+            </option>
+        </select>
+      </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Código Postal Inicial</mat-label>
+            <input matInput
+                    type="text"
+                    [(ngModel)]="item.cp_inicio"
+                    max="500"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Código Postal Final</mat-label>
+            <input matInput
+                    type="text"
+                    [(ngModel)]="item.cp_fin"
+                    max="500"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Calle y Nº *</mat-label>
+            <input matInput
+                type="text"
+                [(ngModel)]="calle"
+                autocomplete="off"     
+                >
+        </mat-form-field>
+        
+        <mat-form-field >
+            <mat-label>Localidad*</mat-label>
+            <input matInput
+                type="text"
+                [(ngModel)]="localidad"
+                autocomplete="off"     
+                >
+        </mat-form-field>
+
+
+        <div class="recogida">
+            <p class="horario" *ngFor="let dia of horario"><b>{{dia | replace:';':', '}}</b></p>
+            <button mat-raised-button (click)="DialogHorarios()"><mat-icon>watch_later</mat-icon> {{ ( item.horario )? 'Editar' : 'Crear' }}
+            Horario de Recogida</button>
+        </div>
+
+
+
+    <div fxLayout="row"
+    fxLayout.xs="row"
+    fxLayoutAlign="center"
+    fxLayoutGap="5px">
+      
+    <button mat-raised-button class="boton" color="primary" (click)="update_zona()">Guardar</button>
+
+    <button mat-raised-button class="boton" color="warn" (click)="borrar_zona()"><mat-icon>delete</mat-icon></button>
+
+    </div>
+
+</div>

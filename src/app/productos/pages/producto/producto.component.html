@@ -1,0 +1,144 @@
+
+<mat-grid-list cols="1" *ngIf="!producto; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto >
+
+<div fxLayout="row wrap"
+        fxLayout.xs="row"
+        fxLayoutAlign="center"
+        class="header-usuario"
+        >
+                <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="30"
+                    fxLayoutAlign="center">
+                     <img class="imagen-usuario" [src]="infoUser | imagenuser" 
+                     [routerLink]="['/productos/productor', infoUser.id_usuario ]"
+                     skipLocationChange
+                     onError="this.src='assets/productos/no-profile-image.png'">
+               </div>
+
+               <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="50"
+                    fxLayoutAlign="center"
+                    fxLayout.xs="row wrap">
+
+                     <h3><b>{{infoUser.nombre_empresa | slice:0:14}}</b><br><small>{{numero_productos}} productos</small></h3>        
+       
+               </div>
+
+               <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="20"
+                    fxLayoutAlign="center"
+                    fxLayout.xs="row wrap"
+                    >
+                    
+                     <button (click)="add_favorito()"><mat-icon style="border-color: black;">{{icono_fav}}</mat-icon></button>
+    
+               </div>
+
+             
+            </div>
+
+
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     >
+
+    <div fxLayout="column"
+        fxFlex.lg="35"
+        fxFlex.sm="60"
+         fxLayout.xs="column"
+         style="margin-top: 80px">
+           
+        <img class="img-prod" [src]="producto | imagen" onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'">
+    
+         <div fxFlex="100">
+
+            <div class="atributos">
+
+                <h1>{{ producto.nombre | titlecase}}</h1>
+                <h2>{{ producto.precio }}€</h2>               
+                <h4>{{ producto.cantidad }}</h4>
+ 
+                
+                
+                <mat-divider></mat-divider>
+                <h4><b>Descripción: </b>{{producto.descripcion}}</h4>
+
+
+                <mat-divider></mat-divider>
+                <h4><b>Categoría: </b>{{categorias[producto.id_categoria].text}}</h4>
+
+                <mat-divider></mat-divider>
+
+                <h4 ><mat-icon >place</mat-icon>{{infoUser.ubicacion}}</h4>
+           
+                
+                <app-map-producto [centro_mapa]="centro_mapa">haahahAHASH</app-map-producto>
+
+
+                <mat-divider></mat-divider>
+
+                <div *ngIf="infoUser.recogida == 1">
+
+                    <h3><strong>Producto con opción a recogida</strong></h3>
+                    
+                </div>
+                
+                <mat-divider></mat-divider>   
+           
+                <mat-divider></mat-divider>
+            </div>
+
+            <mat-toolbar class="btn-comprar" *ngIf="producto.stock > 0">
+
+                <app-boton-carro [id_producto]="producto.id" [esProducto]="true" *ngIf="usuario.id != producto.id_usuario" ></app-boton-carro>
+
+            </mat-toolbar>
+            
+
+            
+            <app-comentarios [producto]="producto" *ngIf="usuario.id != producto.id_usuario"></app-comentarios>
+         </div>
+
+         
+
+    </div>
+
+    </div>
+
+
+    <div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     >
+     <div fxLayout="column"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+      fxLayout.xs="column"
+      class="container">
+   
+</div>
+    </div>
+
+    
+    <div class="spacing" *ngIf="usuario.id != producto.id_usuario || usuario.id != null">
+  
+    </div>
+
+</ng-template>
+
+

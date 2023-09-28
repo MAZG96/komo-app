@@ -1,0 +1,122 @@
+<div class="contenedor_total">
+
+    <mat-grid-list cols="1" [diameter]="20" *ngIf="total==0 ; else divTotal">
+        <mat-grid-tile>
+            <mat-spinner></mat-spinner>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+
+    <ng-template #divTotal>
+    <div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="center"
+    > 
+
+        <div fxFlex="60">
+
+        <p *ngIf="tipo_venta != 2">Total productos </p>
+        <p *ngIf="tipo_venta == 2">Total productos recogida</p>
+        <p *ngIf="carrito_frio">Total productos </p>
+
+
+
+        </div>
+
+        <div fxFlex="40" style="text-align: end;">
+
+        <p>{{total_unificado  | number: '.1-2'}} EUR</p>
+
+        </div>
+
+
+        <div fxFlex="60" *ngIf="tipo_venta != 2">
+
+        <p>Envío</p>
+
+        </div>
+
+        <div fxFlex="40" style="text-align: end;" *ngIf="tipo_venta != 2">
+
+        <p>{{total_envio | number: '.1-2'}} EUR</p>
+
+        </div>
+
+
+        <div fxFlex="60" *ngIf="tipo_venta == 2">
+
+            <p>Productos pago en recogida</p>
+            
+            </div>
+            
+            <div fxFlex="40" style="text-align: end;" *ngIf="tipo_venta == 2">
+            
+            <p>- {{total_pago_recogida | number: '.1-2'}} EUR</p>
+            
+            </div>
+
+        <div fxFlex="60" *ngIf="carrito_frio">
+
+            <p>Envío de productos fríos</p>
+            
+            </div>
+            
+            <div fxFlex="40" style="text-align: end;" *ngIf="carrito_frio">
+            
+            <p>- {{total_envio | number: '.1-2'}} EUR</p>
+            
+            </div>
+
+            <div fxFlex="60" >
+
+                <p>Protección al consumidor</p>
+                
+                </div>
+                
+                <div fxFlex="40" style="text-align: end;">
+                
+                
+                    <p *ngIf="tipo_venta != 2">{{(total_unificado) * 0.03 | number: '.1-2'}} EUR</p>
+
+                    <p *ngIf="tipo_venta == 2">{{(total_unificado+total_pago_recogida) * 0.03 | number: '.1-2'}} EUR</p>
+
+                    <p *ngIf="carrito_frio">{{(total_unificado) * 0.03 | number: '.1-2'}} EUR</p>
+                
+                </div>
+            
+            
+        </div>
+
+
+
+
+
+        <mat-divider></mat-divider>
+
+        <div fxLayout="row wrap"
+        fxLayout.xs="row wrap"
+        fxLayoutAlign="center"
+        style="font-weight: bold;"
+        > 
+
+        <div fxFlex="60">
+
+        <p>Total</p>
+
+        </div>
+
+        <div fxFlex="40" style="text-align: end;">
+
+        <p *ngIf="tipo_venta != 2">{{(total_unificado+total_envio)+(total_unificado*0.03) | number: '.1-2'}} EUR</p>
+
+        <p *ngIf="tipo_venta == 2">{{(total_unificado-total_pago_recogida)+((total_unificado-total_pago_recogida)*0.03) | number: '.1-2'}} EUR</p>
+
+        <p *ngIf="carrito_frio">{{total_unificado+total_envio | number: '.1-2'}} EUR</p>
+
+        </div>
+
+    </div>
+</ng-template>
+
+</div>

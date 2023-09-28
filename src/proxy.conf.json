@@ -1,0 +1,8 @@
+
+{
+    "/api/*": {
+        "target": "https://onlinetools.ups.com/ups.app/xml/Locator",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

@@ -1,0 +1,23 @@
+.ventas {
+    width: 100%;
+    vertical-align: middle;
+
+    justify-content: center;
+  }
+
+
+  @media screen and (min-width: 768px) and  (max-width: 1024px){
+    .container{
+        padding-left: 30%;
+      padding-right: 30%;
+    }
+
+    }
+    
+    @media screen and (min-width: 1024px){
+    
+    .container{
+        padding-left: 10%;
+      padding-right: 10%;
+    }
+  }

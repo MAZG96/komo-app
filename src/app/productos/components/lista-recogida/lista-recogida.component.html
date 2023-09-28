@@ -1,0 +1,44 @@
+
+<div *ngIf="indices.length > 0">
+
+    <h2 style="text-align: center;">Artículos Recogida</h2>
+
+    <!--<h4 style="text-align: center;">¿Dónde recojo mis productos? <mat-icon (click)="DialogDondeRecojo()">information</mat-icon></h4>-->
+
+    <div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="center"
+    *ngFor="let indice of indices"> 
+        
+        <div fxFlex="100">
+            <mat-divider></mat-divider>
+        </div>
+        
+        <div fxFlex="100">
+            <app-usuario-nombre [id_usuario]="indice"></app-usuario-nombre>
+        </div>
+
+        <div fxFlex="100"
+        class="listado-articulos"> 
+                <div *ngFor="let item of carrito_recogida_ordenado[indice]" class="bloque-producto">
+                    <button class="btn-delete" (click)="DialogModificarCarrito(item)"><mat-icon>edit</mat-icon></button>
+                    <img class="foto-producto" [src]="item.foto" >
+                </div>
+        </div>
+        
+        <app-usuario-recogida [id_usuario]="indice"></app-usuario-recogida>
+        
+        <div fxFlex="100">
+        <mat-divider></mat-divider>
+        </div>
+        
+        <div fxFlex="100">
+            <mat-divider></mat-divider>
+        </div>
+    
+    </div>
+    
+    
+    <app-total-pedido [carrito_recogida]="carrito_recogida_copia" (newItemEvent)="get_output($event)"></app-total-pedido>
+
+</div>

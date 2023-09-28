@@ -1,0 +1,39 @@
+
+<div mat-dialog-content>
+<div class="search-container">
+    
+    <button mat-button color="primary" (click)="cerrar()" class="volver-btn">  
+        <mat-icon>clear</mat-icon>
+    </button>
+    
+    <input type="text" 
+    class="form-control" 
+    placeholder="Buscar..."
+    #txtQuery
+    [value]="txt_ej"
+    (keyup)="onQueryChanged(txtQuery.value)">
+    
+    <button mat-raised-button (click)="guardar_localizacion()" [disabled]="!coordenadas_cargadas" class="aplicar-btn">  
+        Aplicar
+    </button>
+
+
+
+<div *ngIf="isLoadingPlaces" 
+class="alert alert-primary nt-2 text-center">
+    <h6>Cargando</h6>
+    <span>Espere, pro favor...</span>
+</div>
+
+<ul class="list-group mb-2" *ngIf="places.length > 0">
+    <li class="list-group-item list-group-item-action pointer"
+        [class.active]="place.id === selected_id"
+        *ngFor="let place of places"
+        (click)="flyTo(place)">
+        <p>{{place.place_name}}</p>
+    </li>
+</ul>
+
+</div>
+
+</div>

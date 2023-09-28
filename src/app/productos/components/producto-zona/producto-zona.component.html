@@ -1,0 +1,82 @@
+
+<mat-card  *ngIf="producto.stock!= 0 && usuario.zona == 1">
+    <div class="contenedor">
+    <app-boton-carro [id_producto]="producto.id" [esCarrito]="false"></app-boton-carro>
+    
+
+    
+    <img mat-card-image [src]="producto | imagen" [routerLink]="['/productos', producto.id ]">
+
+
+    <img class="imagen-usuario" [src]="usuario | imagenuser">
+               
+    <a 
+                class="zona"
+                color="basic"
+                *ngIf="usuario.zona == 1">
+                Zona Conil
+    </a>
+    
+    
+    </div>
+
+    <mat-card-title>{{ producto.nombre | uppercase}}<br>{{ producto.precio}} EUR
+        
+        <br>{{ producto.precio_kg}} EUR/Kg</mat-card-title>
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.2-2' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+
+    
+        
+       
+<!--
+    <mat-card-content>
+        <mat-card-subtitle>{{ producto.descripcion }}</mat-card-subtitle>
+    </mat-card-content>
+    -->
+
+
+    <!--
+    <mat-card-actions>
+        <button mat-button 
+                color="warn"
+                [routerLink]="['/productos', producto.id ]">
+            Leer más...
+        </button>
+
+        <button mat-button 
+                color="info"
+                [routerLink]="['/productos/editar', producto.id ]">
+            Editar
+        </button>
+    </mat-card-actions>
+    -->
+
+
+</mat-card>
+
+<mat-card  *ngIf="producto.stock == 0 && usuario.zona == 1 " (click)="false" [routerLink]="['/productos', producto.id ]">
+    <div class="contenedor">
+    <a 
+    class="texto-stock"
+    color="basic">
+    No hay stock
+    </a>
+    <img mat-card-image [src]="producto | imagen" (click)="false">
+    <a 
+                class="zona"
+                color="basic"
+                *ngIf="usuario.zona == 1">
+                Zona Conil
+    </a>
+    
+    </div>
+
+    <mat-card-title>{{ producto.nombre | uppercase}}<br>{{ producto.precio}} EUR
+        
+        <br>{{ producto.precio_kg}} EUR/Kg</mat-card-title>
+
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.2-2' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+    
+</mat-card>

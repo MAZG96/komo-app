@@ -1,0 +1,53 @@
+
+p{
+    margin: 0px;
+    font-size: small;
+}
+
+.mat-icon{
+    color: #666666;
+}
+
+
+.caja-metodo{
+    width: 70px;
+    margin: 10px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #666666;
+}
+
+
+.caja-metodo-active{
+    width: 70px;
+    margin: 10px;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    color: black;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+
+.caja-metodo-active p{
+    
+    font-weight: bold;
+    color: black;
+
+}
+
+.caja-metodo-active .mat-icon{
+    
+    color: black;
+
+}
+
+h4{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}

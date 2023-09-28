@@ -1,0 +1,13 @@
+.mat-card-sm-image{
+    width: 50%;    
+    height: 100px;
+    object-fit: cover;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+button{
+    margin: 10px;
+}

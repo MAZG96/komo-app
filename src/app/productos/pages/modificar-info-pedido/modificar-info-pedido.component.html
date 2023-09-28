@@ -1,0 +1,138 @@
+<button class="boton-cerrar" (click)="cerrar()"><mat-icon>close</mat-icon></button>
+
+<div class="container">
+
+    <div fxLayout="column"
+    fxLayoutGap="40px"
+    fxLayout.xs="column">
+    
+    <div class="container-lg">
+    
+    <div fxFlex="100" fxLayout="column">
+            
+            
+       <mat-form-field fxFlex="100">
+           <mat-label>Nombre *</mat-label>
+           <input matInput
+                  type="text"
+                  [(ngModel)]="pedido.nombre"
+                  autocomplete="off"
+                  name="Nombre"
+                  minlength="1"
+                  maxlength="30"
+                  >
+       </mat-form-field>
+       <mat-form-field fxFlex="100"  >
+           <mat-label>Apellidos *</mat-label>
+           <input matInput
+                  type="text"
+                  [(ngModel)]="pedido.apellidos"
+                  autocomplete="off"
+                  minlength="1"
+                  maxlength="30"
+                  >
+       </mat-form-field>
+    
+       <mat-form-field fxFlex="100" >
+        <mat-label>Nº y Calle *</mat-label>
+        <input matInput
+               type="text"
+               [(ngModel)]="pedido.calle"
+               autocomplete="off"
+               minlength="1"
+                  maxlength="30"
+               >
+        </mat-form-field>
+        
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Piso, puerta u otro</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="pedido.piso"
+                   autocomplete="off"
+                   minlength="1"
+                  maxlength="30"
+                   >
+            </mat-form-field>
+    
+        <mat-form-field fxFlex="100" >
+            <mat-label>Código Postal *</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="pedido.codigo_postal"
+                   autocomplete="off"
+                   
+                   >
+            </mat-form-field>
+        
+        <mat-form-field fxFlex="100">
+            <mat-label>Localidad *</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="pedido.localidad"
+                   autocomplete="off"
+                   
+                   
+                  >
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+                <mat-label>Provincia *</mat-label>
+                <mat-select [(ngModel)]="pedido.provincia" name="provincia">
+                    <mat-option *ngFor="let provincia of provincias" [value]="provincia" >
+                        {{provincia}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Teléfono *</mat-label>
+            <input matInput
+                    type="tel"
+                    [(ngModel)]="pedido.telefono"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Email *</mat-label>
+            <input matInput
+                    type="email"
+                    [(ngModel)]="pedido.email"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+    
+        <mat-form-field fxFlex="100">
+            <mat-label>Confirmación Email *</mat-label>
+            <input matInput
+                    type="email"
+                    [(ngModel)]="confirma_email"
+                    autocomplete="off"
+                    >
+        </mat-form-field>
+       
+        <button mat-raised-button 
+        (click)="guardar_infopedido()"
+        >Guardar</button>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+        
+    
+    
+        <!--div class="container" style="text-align: center;">
+            <button mat-raised-button 
+        color="primary"
+        (click)="prueba_seur()"
+        >
+        <mat-icon>done</mat-icon>
+        Realizar SEUR
+        </button>-->
+
+       
+    
+    

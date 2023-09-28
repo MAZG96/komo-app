@@ -1,0 +1,31 @@
+.total{
+    text-align: left!important;
+}
+
+.total_cart{
+    position: fixed;
+    bottom: -54px;
+    left: 0;
+    z-index: 1000;
+    justify-content: center;
+    padding: 1em;
+    margin-bottom:55px;
+    background-color: white;
+    border-top: 1px solid;
+}
+
+
+@media screen and (min-width: 768px) and  (max-width: 1024px){
+    .container{
+        padding-left: 20%;
+      padding-right: 20%;
+    }
+}
+
+@media screen and (min-width: 1024px){
+
+    .container{
+        padding-left: 30%;
+      padding-right: 30%;
+    }
+}

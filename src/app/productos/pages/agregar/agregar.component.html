@@ -1,0 +1,212 @@
+
+
+
+
+<!--
+<h1>
+    {{usuario | json}}
+</h1>-->
+
+<div class="container">
+
+<!-----------MOVIL-->
+
+<div class="movil">
+    
+<div fxLayout="column"
+    fxLayoutGap.xs="20px"
+     fxLayout.xs="column" style="padding-left: 50px;padding-right: 50px;">
+
+     <h1 style="text-align: center;font-size: 20px;">
+        {{ ( producto.id )? 'Editar' : 'Nuevo' }}
+        Producto
+    </h1>
+    <mat-divider ></mat-divider>
+
+    <div fxFlex="50" fxLayout="column"   >
+     <mat-grid-list cols="1" *ngIf="!foto_subida ; else divProducto">
+            <mat-grid-tile>
+                <mat-spinner [diameter]="70"></mat-spinner>
+            </mat-grid-tile>
+        </mat-grid-list>
+    <ng-template #divProducto >
+        
+     
+            <button class="subir-imagen"
+                (click)="fileUpload.click()">
+                <img  class="upload-btn" [src]="producto | imagen" onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'">     
+            </button> 
+
+
+            <input  type="file" class="file-input"
+                    [accept]="requiredFileType"
+                    (change)="onFileSelected($event)"
+                     #fileUpload>
+
+
+            <div class="progress">
+
+            <mat-progress-bar class="progress-bar" mode="determinate"
+                                [value]="uploadProgress" *ngIf="uploadProgress">
+
+            </mat-progress-bar>
+
+            <mat-icon class="cancel-upload" (click)="cancelUpload()" 
+                        *ngIf="uploadProgress">delete_forever</mat-icon>
+
+            </div>     
+   
+
+    </ng-template>
+
+</div>
+
+    <mat-divider ></mat-divider>
+
+
+    <div fxFlex="100" fxLayout="column" >
+        
+        <div fxLayout="column" 
+             fxLayout.xs="column" >
+            <mat-form-field fxFlex="100" >
+                <mat-label>Producto</mat-label>
+                <input matInput
+                       type="text"
+                       maxlength="25"
+                       [(ngModel)]="producto.nombre"
+                       autocomplete="off"
+                       >
+                       <mat-hint align="end">{{producto.nombre.length}} / 25</mat-hint>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="100">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput
+                       type="text"
+                       maxlength="250"
+                       rows="5"
+                       [(ngModel)]="producto.descripcion"
+                       autocomplete="off"
+                       ></textarea>
+                       <mat-hint align="end">{{producto.descripcion.length}} / 250</mat-hint>
+            </mat-form-field>
+        
+
+
+        <mat-form-field>
+            <mat-label>Precio</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="precio_producto"
+                   autocomplete="off"
+                   >
+                   <small matSuffix>€</small>
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Cantidad</mat-label>
+            <div class="cantidad">
+            
+            <input matInput
+                   type="number"
+                   step="0.01"
+                   [(ngModel)]="cantidad"
+                   autocomplete="off">
+                   <mat-select [(ngModel)]="unidad.text" name="unidades">
+        
+                    <mat-option *ngFor="let unidad of unidades" [value]="unidad.text" > 
+                      {{unidad.text}}
+                    </mat-option>
+              
+                  </mat-select>
+                </div>
+        </mat-form-field>
+
+        <mat-form-field (click)="elegir_peso()">
+            <mat-label>Peso bruto</mat-label>
+            <input matInput
+                   type="number"
+                   step="0.01"
+                   [(ngModel)]="producto.peso_total"
+                   [readonly]="true"
+                   autocomplete="off">
+                   <small matSuffix>kg</small>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Stock</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="producto.stock"
+                   max="500"
+                   autocomplete="off"
+                   >
+                   <small matSuffix>ud(s)</small>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Categoría</mat-label>
+            <mat-select [(ngModel)]="producto.id_categoria" name="categorias">
+        
+              <mat-option *ngFor="let categoria of categorias" [value]="categoria.id" > 
+                {{categoria.text}}
+              </mat-option>
+        
+            </mat-select>
+        </mat-form-field>
+
+
+        <!--
+            <mat-form-field  class="no-movil-dias"> 
+                <mat-label>Diás producto publicado</mat-label>
+                <mat-select [(ngModel)]="ej" name="dia" multiple>
+            
+                <mat-option *ngFor="let dia of diasList" [value]="dia.ing" > 
+                    {{dia.esp}}
+                </mat-option>
+            
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-label class="movil-dias">Diás producto publicado</mat-label>
+            <select [(ngModel)]="ej" name="dia" multiple class="movil-dias">
+        
+              <option *ngFor="let dia of diasList" [value]="dia.ing" > 
+                {{dia.esp}}
+              </option>
+        
+            </select>
+--->
+
+        <div fxLayout>
+            
+        
+            <span class="spacer"></span>
+
+            
+        </div>
+
+
+        <button mat-raised-button 
+                style="background-color:#e3c4b3"
+                (click)="guardar()">
+            <mat-icon>edit</mat-icon>
+            {{ ( producto.id )? 'Actualizar' : 'Crear' }}
+        </button>
+        <br>
+        <button *ngIf="producto.id"
+                mat-raised-button
+                (click)="borrarproducto()"
+                class="boton-borrar">
+                <mat-icon>delete</mat-icon>
+                Borrar
+        </button>
+
+
+</div>
+
+</div>
+
+</div>

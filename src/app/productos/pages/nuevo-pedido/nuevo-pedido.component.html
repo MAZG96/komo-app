@@ -1,0 +1,81 @@
+
+<!--<h2>Instrucciones a seguir:</h2>
+<ol>
+<li>1.- Accede a este enlace e imprime la etiqueta para tu envío: <mat-spinner [diameter]="30" *ngIf="!enlace_etiqueta ; else divProducto"></mat-spinner>
+  <ng-template #divProducto ><a target="_blank" [href]="enlace_etiqueta" *ngIf="enlace_etiqueta != 'hola'"><mat-icon>print</mat-icon>Imprimir etiqueta</a> <b *ngIf="enlace_etiqueta == 'hola'">Ya está enviado el producto</b></ng-template></li>
+<br>
+<li>2.- Entrega los productos con sus etiquetas correspondientes en uno de estos puntos.</li>
+</ol>
+
+
+<div class="bloque">
+<div class="container" *ngFor="let item of access_point; let i = index">
+<mat-card class="example-card">
+    <mat-card-title-group >
+      <img mat-card-sm-image [src]="item.AccessPointInformation.ImageURL.text" onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'">
+      <mat-card-title >{{item.AddressKeyFormat.ConsigneeName.text | titlecase}}</mat-card-title>
+      <mat-card-subtitle>{{item.AddressKeyFormat.AddressLine.text}}, {{item.AddressKeyFormat.PostcodePrimaryLow.text}}<br>{{item.AddressKeyFormat.PoliticalDivision2.text}}</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="item.recogida == 1">Producto recogido</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-title-group>
+        <mat-card-subtitle><a target="_blank" [href]="'https://www.google.com/maps/dir/?api=1&destination=' + item.Geocode.Latitude.text +','+item.Geocode.Longitude.text"><mat-icon>location_on</mat-icon>Cómo llegar</a></mat-card-subtitle>
+        <mat-card-subtitle (click)="ver_horario(item)"><mat-icon>access_time</mat-icon>Ver horarios</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card>
+  
+</div>
+
+</div>-->
+
+<mat-grid-list cols="1" *ngIf="!pedido ; else divPedido">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divPedido>
+
+<div *ngIf="pedido.tipo_venta == 0"> 
+  <h2>Instrucciones a seguir:</h2>
+  <ol>
+  <li>1.- Recibirás la etiqueta de envío por correo en 24/48 horas</li>
+  <li>2.- Imprime la etiqueta y empaqueta los productos que has vendido</li>
+  <li>3.- Un repartidor irá al domicilio que has indicado en tu perfil a recoger el/los paquete(s)</li>
+  </ol>
+</div>
+
+<div *ngIf="pedido.tipo_venta == 1">
+  <h2>Instrucciones a seguir:</h2>
+  <ol>
+  <li>1.- Recibirás la etiqueta de envío por correo en 24/48 horas</li>
+  <li>2.- Imprime la etiqueta y empaqueta los productos que has vendido</li>
+  <li>3.- Lleva el/los paquete(s) al <b>punto de Unificar KOMO</b></li>
+  </ol>
+  <div style="border: 1px solid black; padding: 5px; margin-top: 5px;">
+    <h4>Dirección Punto Unficar KOMO</h4>
+    <p>Dirección: <b>{{zona.nombre}}</b></p>
+    <p>Provincia: <b>{{zona.provincia}}</b></p>
+    <p>Código Postal: <b>{{zona.cp_inicio}}</b></p>
+    <p>Horario: </p>
+    <p><b>{{zona.horario}}</b></p>
+</div>
+</div>
+
+<div *ngIf="pedido.tipo_venta == 2">
+  <h2>Instrucciones a seguir:</h2>
+  <ol>
+  <li>1.- Consulta el día de la semana y la hora que ha indicado el comprador y espera a que pase por la dirección que has indicado en tu perfil a recoger su compra</li>
+  </ol>
+</div>
+
+<div *ngIf="pedido.tipo_venta == 3"> 
+  <h2>Instrucciones a seguir:</h2>
+  <ol>
+  <li>1.- Recibirás la etiqueta de envío por correo en 24/48 horas</li>
+  <li>2.- Imprime la etiqueta y empaqueta los productos que has vendido</li>
+  <li>3.- Un repartidor irá al domicilio que has indicado en tu perfil a recoger el/los paquete(s)</li>
+  </ol>
+</div>
+
+</ng-template>

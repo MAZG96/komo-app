@@ -1,0 +1,23 @@
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+
+
+    <h5>Elige la categoría</h5>
+
+
+    <mat-form-field>
+        <mat-label>Categoría</mat-label>
+        <mat-select [(ngModel)]="categoria" name="categorias">
+    
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria" > 
+            {{categoria.text}}
+          </mat-option>
+    
+        </mat-select>
+    </mat-form-field>     
+
+
+    <button mat-raised-button (click)="elegir_categoria()" [disabled]="!categoria">Elegir Categoría</button>
+
+    
+
+</div>

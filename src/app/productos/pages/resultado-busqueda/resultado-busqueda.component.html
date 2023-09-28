@@ -1,0 +1,58 @@
+<mat-grid-list cols="1" *ngIf="!productos; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<div >
+<ng-template #divProducto >
+
+<div class="container" *ngIf="productos.length == 0">
+    <app-buscar routerLink="/productos/busqueda"></app-buscar>
+
+    <h3>No hay resultados para la búsqueda solicitada</h3>
+<mat-divider></mat-divider>
+
+</div>
+
+
+<div class="container" *ngIf="productos.length > 0">
+
+    <app-buscar routerLink="/productos/busqueda"></app-buscar>
+
+
+<mat-chip-list aria-label="Fish selection">
+    <mat-chip *ngIf="lugar">{{lugar.place_name | slice:0:40}}...</mat-chip>
+</mat-chip-list>
+
+   
+<h3>Resultados de búsqueda</h3>
+<mat-divider></mat-divider>
+<br>
+
+
+
+<div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     fxLayoutGap="5px">
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         fxFlex.xs="45"
+         *ngFor="let producto of productos">
+
+       
+        <app-producto-tarjeta [producto]="producto" ></app-producto-tarjeta>
+    </div>
+</div>
+
+
+
+</div>
+
+</ng-template>
+
+</div>

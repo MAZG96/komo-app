@@ -1,0 +1,41 @@
+<mat-grid-list cols="1" *ngIf="!favoritos; else divProducto">
+   <mat-grid-tile>
+       <mat-spinner></mat-spinner>
+   </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divProducto >
+
+
+<div class="container">
+
+    <h2>Favoritos: </h2>
+    <p>Productores favoritos:</p>
+    
+
+    
+
+      <div fxLayout="column wrap"
+         fxLayout.xs="column wrap"
+         fxLayoutAlign="center"
+         fxLayoutGap="5px"
+         >
+         <div class="center" *ngIf="favoritos.length == 0">
+            <p>No hay favoritos añadidos</p>
+          </div>
+
+         <div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         
+         *ngFor="let favorito of favoritos">
+
+         <app-item-favorito [favorito]="favorito"></app-item-favorito>
+
+
+         </div>
+      </div>
+</div>
+
+</ng-template>

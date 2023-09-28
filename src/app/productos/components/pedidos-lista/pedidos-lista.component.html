@@ -1,0 +1,56 @@
+
+  <mat-card class="example-card" *ngFor="let pedido of pedidos | paginate: { itemsPerPage: 6, currentPage: pages }">
+    <div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="start center"
+  >
+      <div fxFlex="50"
+      fxFlex.lg="50"
+      fxFlex.sm="50"
+      fxFlex.xs="50"
+      >
+      
+        <mat-card-title >{{pedido.createdAt |  date: 'dd/MM/yyyy'}}</mat-card-title>
+        <mat-card-subtitle><b>Total: </b>{{pedido.total}}€</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 0">Envío Individual</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 1">Envío Conjunto</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 2">Recogida</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 3">Envío Frío</mat-card-subtitle>
+
+
+
+      </div>
+  
+      <div fxFlex="50"
+      fxFlex.lg="50"
+      fxFlex.sm="50"
+      fxFlex.xs="50">
+      <mat-card-subtitle><button mat-raised-button (click)="ir_pedido(pedido.id)"> Ver</button></mat-card-subtitle>
+    
+  
+      </div>
+
+    </div>
+  
+      
+  </mat-card>
+
+
+<div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="start center"
+  >
+
+<div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         fxLayoutAlign="center"
+         *ngIf="pedidos.length > 6"
+         style="padding-bottom: 50px;">
+       
+         <pagination-controls (pageChange)="pages = $event" nextLabel="" previousLabel=""></pagination-controls>
+    </div>
+
+</div>
+

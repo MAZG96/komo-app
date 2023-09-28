@@ -1,0 +1,33 @@
+<div class="container">
+<div fxLayout="row wrap"
+fxLayout.xs="row wrap"
+fxLayoutAlign="center"
+fxLayoutGap="5px"
+>
+<h3 style="text-align: center;">Zonas: </h3>
+
+
+<div fxFlex="100"
+     fxFlex.lg="100"
+     fxFlex.sm="100"
+     fxFlex.xs="100"
+     >
+     </div>
+
+     <button mat-raised-button (click)="crear_zona()" style="width: 100px;"><mat-icon>add</mat-icon></button>
+
+
+     <div fxFlex="100"
+          fxFlex.lg="100"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          *ngFor="let item of zonas">
+
+
+          <app-item-zona [item]="item"></app-item-zona>
+
+     </div>
+
+</div> 
+
+</div>

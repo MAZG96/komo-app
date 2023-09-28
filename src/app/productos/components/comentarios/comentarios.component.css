@@ -1,0 +1,17 @@
+
+
+  .example-full-width {
+    width: 100%;
+  }
+  
+  
+  .star {
+    --br-font-size: 20px;
+    --br-active-color: #ed7b67;
+    --br-inactive-color: #d2d2d2;
+  }
+  
+  .bar {
+    --br-active-color: #17c9c9;
+  }
+

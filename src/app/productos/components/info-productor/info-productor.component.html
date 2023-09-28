@@ -1,0 +1,49 @@
+
+
+
+
+<div fxLayout="column"
+        fxLayout.xs="column"
+        fxLayoutAlign="center"
+        class="container"
+        >     
+            
+        <h2>Estadísticas</h2>
+
+        <span>{{productos_en_venta}} Productos en Venta</span> <br>
+
+        <!--<mat-icon>bar_chart</mat-icon><span>{{numero_pedidos}} Compras</span> <br>
+
+        <mat-icon>bar_chart</mat-icon><span>{{numero_ventas}} Ventas</span>-->
+
+        <h2>Ubicacion</h2>
+        <span>{{infoUser.ubicacion}}</span>
+
+        <div *ngIf="infoUser.pregunta1 && infoUser.pregunta2">
+
+        <h2>Curiosidades</h2>
+
+        <span><b>¿Por qué tu producto es maravilloso?</b><br><br>{{infoUser.pregunta1}}</span><br><br>
+        <span><b>¿Por qué tu producto es sostenible?</b><br><br>{{infoUser.pregunta2}}</span>
+
+        </div>
+
+        <h2 *ngIf="infoUser.certificado">Documentación</h2>
+
+        <a *ngIf="infoUser.certificado" [href]="infoUser.certificado" target="_blank"><button mat-raised-button color="primary"> Ver Documento</button></a>
+
+        
+
+</div>
+
+
+
+
+
+
+            
+
+
+
+            
+    

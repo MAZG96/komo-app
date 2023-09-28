@@ -1,0 +1,11 @@
+p{
+    text-align: justify;
+}
+
+.container{
+
+    background-image: url("http://localhost:4200/assets/productos/komo-logo-t.png");
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
+}

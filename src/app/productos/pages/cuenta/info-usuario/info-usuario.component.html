@@ -1,0 +1,649 @@
+    <mat-grid-list cols="1" *ngIf="!cargado ; else divProducto">
+        <mat-grid-tile>
+            <mat-spinner [diameter]="70"></mat-spinner>
+        </mat-grid-tile>
+    </mat-grid-list>
+<ng-template #divProducto >
+
+<div
+fxLayout="column"
+fxLayoutGap="40px"
+fxLayout.xs="column"
+class="container">
+
+    <div fxFlex="100"  fxFlexAlign="center" fxLayout="column">
+        <div fxLayout="column" 
+             fxLayout.xs="column" 
+             fxFlexAlign="center"
+             >
+
+            
+
+             <h2>Imagen de Perfil</h2>
+
+             <button  *ngIf="(user.id != '' || usuario_creado) && (user.zona == 0 && user.recogida == 0 && user.envio_individual == 0 && user.envio_frio == 0)" mat-mini-fab id="boton-desactivar" aria-label="Informacion" 
+             (click)="DialogVenta('No tienes activo ningún método de venta. Elige el método de venta que más se adapte a ti')">
+                <mat-icon>remove_shopping_cart</mat-icon>
+              </button>
+
+             <mat-grid-list cols="1" *ngIf="!foto_subida ; else divProducto">
+                <mat-grid-tile>
+                    <mat-spinner [diameter]="70"></mat-spinner>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <ng-template #divProducto >
+             <img class="imagen-perfil" [src]="user | imagenuser" onError="this.src='assets/productos/no-profile-image.png'">
+
+             <input type="file" class="file-input"
+            [accept]="requiredFileType"
+            (change)="onFileSelected($event)" #fileUpload>
+
+        
+            <button mat-button color="primary" class="upload-btn"
+            (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            Cambiar Foto
+            </button>
+
+        
+
+        <div class="progress">
+
+            <mat-progress-bar class="progress-bar" mode="determinate"
+                                [value]="uploadProgress" *ngIf="uploadProgress">
+
+            </mat-progress-bar>
+
+            <mat-icon class="cancel-upload" (click)="cancelUpload()" 
+                        *ngIf="uploadProgress">delete_forever</mat-icon>
+
+        </div>    
+
+    </ng-template>
+
+             
+             
+        </div>
+    </div>
+
+    <h2>Información del Vendedor</h2>
+     
+    <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+        
+             
+             
+             
+        <mat-form-field >
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="user.nombre"
+                   autocomplete="off"     
+                   >
+        </mat-form-field>
+        <mat-form-field >
+            <mat-label>Nombre Empresa</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="user.nombre_empresa"
+                   autocomplete="off"
+                   maxlength="14"
+                   >
+                   <mat-hint align="end">{{user.nombre_empresa.length}} / 14</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Teléfono</mat-label>
+            <input matInput
+                   type="tel"
+                   [(ngModel)]="user.telefono_envio"
+                   autocomplete="off"     
+                   >
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Código Postal</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="user.cp_envio"
+                   autocomplete="off"     
+                   >
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Ubicación de tus productos</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="direc"
+                   autocomplete="off"
+                   [readonly]="true"
+                   (click)="openDialog()">
+        </mat-form-field>
+        <p (click)="DialogUbicacion()">¿Que es la ubicación de tus productos? <b style="cursor: pointer;">Saber más</b></p>
+
+        
+
+
+        <button mat-raised-button 
+        color="primary"
+        (click)="guardar_usuario()"
+        >
+    <mat-icon>edit</mat-icon>
+    Guardar
+</button>
+    </div>
+
+</div>
+
+<div fxLayout="column"
+fxLayout.xs="column"
+style="margin-top: 40px;"
+class="container"
+*ngIf="(user.id != '' || usuario_creado)">
+
+
+
+     
+    <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+    </div>
+
+
+    <h2>Documentación</h2>
+
+
+
+    <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;align-items: center;margin: auto">
+
+                <mat-spinner  *ngIf="!documento_subido ; else divDocumento" [diameter]="70"></mat-spinner>
+
+        <ng-template #divDocumento >
+
+        <input type="file" class="file-input"
+        accept="application/pdf"
+        (change)="subir_documento($event)" #fileUpload>
+
+        <p>Por favor adjuntar documentación acreditativa de su negocio. <b (click)="DialogDocumento()">Más Información</b></p>
+
+        <button mat-button color="primary" class="upload-btn"
+        (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        Subir documento
+        </button>
+
+
+
+        <div class="progress">
+
+            <mat-progress-bar class="progress-bar" mode="determinate"
+                                [value]="uploadProgress" *ngIf="uploadProgress">
+
+            </mat-progress-bar>
+
+            <mat-icon class="cancel-upload" (click)="cancelUpload()" 
+                        *ngIf="uploadProgress">delete_forever</mat-icon>
+
+        </div>   
+        
+        
+        <a *ngIf="user.certificado" [href]="user.certificado" target="_blank"><button mat-raised-button color="primary"> Ver Documento</button></a>
+
+    </ng-template>
+
+
+
+    </div>
+
+</div>
+
+
+<div fxLayout="column"
+fxLayout.xs="column"
+style="margin-top: 40px;"
+class="container"
+*ngIf="(user.id != '' || usuario_creado)">
+
+
+
+     
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+</div>
+
+
+<h2>Cuéntanos acerca de tus productos</h2>
+
+
+
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+
+    <mat-form-field fxFlex="100">
+        <mat-label>¿Por qué tu producto es maravilloso?</mat-label>
+        <textarea matInput
+            type="text"
+            maxlength="300"
+            rows="5"
+            [(ngModel)]="user.pregunta1"
+            autocomplete="off"
+            ></textarea>
+            <mat-hint align="end">{{user.pregunta1.length}} / 300</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="100">
+        <mat-label>¿Por qué tu producto es sostenible?</mat-label>
+        <textarea matInput
+            type="text"
+            maxlength="300"
+            rows="5"
+            [(ngModel)]="user.pregunta2"
+            autocomplete="off"
+            ></textarea>
+            <mat-hint align="end">{{user.pregunta2.length}} / 300</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button 
+    color="primary"
+    (click)="guardar_infoenvio()">
+    <mat-icon>edit</mat-icon>
+        Guardar
+    </button>
+
+</div>
+
+</div>
+
+<div fxLayout="column"
+fxLayout.xs="column"
+style="margin-top: 40px;"
+class="container"
+*ngIf="(user.id != '' || usuario_creado)">
+
+
+
+     
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+</div>
+
+
+<h2>¿Qué días quieres que se vean tus productos?</h2>
+
+
+
+<section class="example-section">
+    <p (click)="DialogEnvio()">¡Elige los días en los que quieres ser el rey del mercado! Con esta opción, puedes decidir en qué días los compradores podrán hacerse con tus productos. <b style="cursor: pointer;">Saber más</b></p>
+</section>
+
+<mat-form-field  class="no-movil-dias"> 
+    <mat-select [(ngModel)]="ej" name="dia" multiple>
+
+    <mat-option *ngFor="let dia of diasList" [value]="dia.ing" > 
+        {{dia.esp}}
+    </mat-option>
+
+    </mat-select>
+</mat-form-field>
+
+            <select [(ngModel)]="ej" name="dia" multiple class="movil-dias">
+        
+              <option *ngFor="let dia of diasList" [value]="dia.ing" > 
+                {{dia.esp}}
+              </option>
+        
+            </select>
+
+            <button mat-raised-button 
+        color="primary"
+        (click)="cambiar_dias()"
+        >
+    <mat-icon>edit</mat-icon>
+    Guardar
+</button>
+
+</div>
+
+<div fxLayout="column"
+fxLayout.xs="column"
+fxFlexAlign="center"
+style="margin-top: 40px;"
+
+*ngIf="(user.id != '' || usuario_creado)">
+
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+</div>
+
+<h2>Métodos de Venta</h2>
+
+
+
+<section class="example-section" style="text-align:center">
+    <p>Aquí podrás configurar el método de venta que más se adapte a ti.</p>
+    <small>*Sólo puedes activar uno de los métodos de venta disponibles</small>
+</section>
+
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+
+    <button *ngIf="user.zona != 0 || user.recogida != 0 || user.envio_individual != 0 || user.envio_frio != 0"
+                    mat-raised-button 
+                    class="boton-desactivar"
+                    (click)="desactivar_venta()"
+                    style="text-align: center;">
+                    <mat-icon>info</mat-icon>
+                        Desactivar venta
+                    </button>
+
+
+    <p *ngIf="user.zona == 0 && user.recogida == 0 && user.envio_individual == 0 && user.envio_frio == 0">No has activado ningún método de venta aún</p>
+</div>
+
+
+
+<mat-tab-group #demo3Tab  mat-align-tabs="center" mat-stretch-tabs="false">
+
+    <mat-tab label="Envío Conjunto" >
+
+        <div fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        class="container"
+        *ngIf="user.id != '' || usuario_creado">
+
+
+     
+            <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+            </div>
+
+            <h2>¿Desea enviar sus pedidos?</h2>
+
+
+            <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+
+
+                <section class="example-section">
+                    <p (click)="DialogZonaConil()">¡Apúntate y prepárate para el éxito! Con esta opción, tus ventas se dispararán, ya que los compradores podrán recibir en casa productos de diferentes productores pagando un único transporte. ¡Es hora de unir fuerzas y multiplicar tus ganancias!
+                        <b style="cursor: pointer;">Saber más</b></p>
+                </section>
+
+                <section class="example-section" *ngIf="zona.id != 0">
+                <mat-checkbox class="checkbox-recoger" [(ngModel)]="apuntar_zona" color="primary">
+                    Unificar Pedidos</mat-checkbox>
+                </section>
+                    <p>Código Postal: <b>{{codigo_postal_zona}}</b></p>   
+                    
+                    <p *ngIf="zona.id == 0">No hay zonas disponibles para tu código postal</p>
+
+                <div *ngIf="zona.id != 0">
+                    <p>Zona <b>{{zona.provincia}}</b></p>
+                    <p>Dirección: <b>{{zona.nombre}}</b></p>
+                </div>
+
+                <button mat-raised-button 
+                color="primary"
+                (click)="guardar_zona()">
+                <mat-icon>edit</mat-icon>
+                Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Envío Individual">
+
+        <div fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        class="container"
+        *ngIf="user.id != '' || usuario_creado">
+
+
+            
+        <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+        </div>
+
+            <h2>Información de Envío Individual</h2>
+
+            <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+                
+                <section class="example-section">
+                    <p (click)="DialogPunto()">¡Vende y déjanos el resto a nosotros! Nuestro transportista vendrá a recoger tus productos donde tú quieras: ya sea tu huerto, tienda o incluso tu propia casa. ¡La comodidad y la facilidad van de la mano en cada venta que hagas!
+                        <b style="cursor: pointer;">Saber más</b></p>
+                <mat-checkbox class="checkbox-recoger" [(ngModel)]="user.envio_individual" color="primary">
+                    Activar Envío Individual </mat-checkbox>
+                </section>
+
+                <mat-form-field >
+                    <mat-label>Calle y Nº *</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="calle"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field >
+                    <mat-label>Localidad*</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="localidad"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Provincia *</mat-label>
+                    <mat-select [(ngModel)]="prov" name="provincia" >
+                        <mat-option *ngFor="let provincia of provincias" [value]="provincia" (click)="recargar_zonas()">
+                            {{provincia}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput
+                        type="text"
+                        maxlength="200"
+                        rows="5"
+                        [(ngModel)]="user.piso"
+                        autocomplete="off"
+                        ></textarea>
+                        <mat-hint align="end">{{user.piso.length}} / 200</mat-hint>
+                </mat-form-field>
+
+                <button mat-raised-button 
+                color="primary"
+                (click)="guardar_individual()">
+                <mat-icon>edit</mat-icon>
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Recogida Local">
+
+        <div fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        class="container"
+        *ngIf="user.id != '' || usuario_creado">
+
+
+            
+        <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+        </div>
+
+            <h2>Información de Recogida</h2>
+
+
+            <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+                
+                <section class="example-section">
+                    <p (click)="DialogPunto()">¡Espera a los compradores con los brazos abiertos! <b style="cursor: pointer;">Saber más</b></p>
+                <mat-checkbox class="checkbox-recoger" [(ngModel)]="user.recogida" color="primary">
+                    Activar punto de recogida </mat-checkbox>
+                </section>
+
+                <section class="example-section">
+                    <p (click)="DialogPago()">¿Desea recibir el pago cuando recoja el producto? <b style="cursor: pointer;">Saber más</b></p>
+                <mat-checkbox class="checkbox-recoger" [(ngModel)]="user.pago_recogida" color="primary">
+                    Activar pago en el punto de recogida </mat-checkbox>
+                </section>
+                    
+                <div class="recogida">
+                <p class="horario" *ngFor="let dia of horario"><b>{{dia | replace:';':', '}}</b></p>
+                <button mat-raised-button (click)="DialogHorarios()"><mat-icon>watch_later</mat-icon> {{ ( user.horario )? 'Editar' : 'Crear' }}
+                    Horario de Recogida</button>
+                </div>
+
+                <mat-form-field >
+                    <mat-label>Calle y Nº *</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="calle"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field >
+                    <mat-label>Localidad*</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="localidad"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Provincia *</mat-label>
+                    <mat-select [(ngModel)]="prov" name="provincia" >
+                        <mat-option *ngFor="let provincia of provincias" [value]="provincia" (click)="recargar_zonas()">
+                            {{provincia}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput
+                        type="text"
+                        maxlength="200"
+                        rows="5"
+                        [(ngModel)]="user.piso"
+                        autocomplete="off"
+                        ></textarea>
+                        <mat-hint align="end">{{user.piso.length}} / 200</mat-hint>
+                </mat-form-field>
+
+                <button mat-raised-button 
+                color="primary"
+                (click)="guardar_recogida()">
+                <mat-icon>edit</mat-icon>
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
+
+    <mat-tab label="Envío Refrigerado">
+
+        <div fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        class="container"
+        *ngIf="user.id != '' || usuario_creado">
+
+
+            
+        <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+        </div>
+
+            <h2>Información Envío Refrigerado</h2>
+
+
+            <div fxFlex="100"  fxFlexAlign="center" fxLayout="column" style="width: 100%;">
+                
+                <section class="example-section">
+                    <p (click)="DialogFrio()">¡Sabemos que tus productos merecen un viaje de primera clase! Nos aseguraremos de que lleguen en las mejores condiciones posibles. <b style="cursor: pointer;">Saber más</b></p>
+                <mat-checkbox class="checkbox-recoger" [(ngModel)]="user.envio_frio" color="primary">
+                    Activar Venta Refrigerada </mat-checkbox>
+                </section>
+
+                <mat-form-field >
+                    <mat-label>Calle y Nº *</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="calle"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field >
+                    <mat-label>Localidad*</mat-label>
+                    <input matInput
+                        type="text"
+                        [(ngModel)]="localidad"
+                        autocomplete="off"     
+                        >
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Provincia *</mat-label>
+                    <mat-select [(ngModel)]="prov" name="provincia" >
+                        <mat-option *ngFor="let provincia of provincias" [value]="provincia" (click)="recargar_zonas()">
+                            {{provincia}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field fxFlex="100">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput
+                        type="text"
+                        maxlength="200"
+                        rows="5"
+                        [(ngModel)]="user.piso"
+                        autocomplete="off"
+                        ></textarea>
+                        <mat-hint align="end">{{user.piso.length}} / 200</mat-hint>
+                </mat-form-field>
+
+                <button mat-raised-button 
+                color="primary"
+                (click)="guardar_frio()">
+                <mat-icon>edit</mat-icon>
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
+
+
+
+
+</mat-tab-group>
+
+</div>
+
+
+<div class="spacing"></div>
+
+
+
+
+
+
+
+
+     

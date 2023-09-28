@@ -1,0 +1,34 @@
+<div class="container">
+<h1>Pedidos Realizados</h1>
+<hr>
+
+<div *ngIf="doughnutChartData.length === 0; else divGrafica" 
+    class="alert alert-info">
+    Cargando Data....
+</div>
+
+<div class="row">
+    <div class="col">
+        <span class="float-end text-primary">
+            Información de ventas por mes
+        </span>
+
+        <ng-template #divGrafica>
+            <div style="display: block">
+                <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [label] = "label"
+                  [chartType]="doughnutChartType"
+                  >
+                </canvas>
+            </div>
+
+           
+        </ng-template>
+
+
+    </div>
+</div>
+
+</div>

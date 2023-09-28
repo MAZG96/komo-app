@@ -1,0 +1,70 @@
+.mat-raised-button{
+    float:right;
+}
+
+.add_producto{
+    color: white;
+}
+
+.mat-fab{
+    line-height: 0px!important;
+}
+
+.caja_add{
+    align-items: center;
+
+}
+
+.headerNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 0px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+
+  .boton-notif{
+    background-color: white;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+  }
+
+  #boton-desactivar{
+   
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+  }
+
+
+
+
+  @media screen and (min-width: 768px) and  (max-width: 1024px){
+    .container{
+        padding-left: 20%;
+      padding-right: 20%;
+    }
+    
+    }
+    
+    @media screen and (min-width: 1024px){
+    
+    .container{
+        padding-left: 30%;
+      padding-right: 30%;
+    }
+    }
+    
+    
+

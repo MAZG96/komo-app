@@ -1,0 +1,115 @@
+<mat-grid-list cols="1" *ngIf="!cargado ; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+
+<ng-template #divProducto >
+
+
+  
+    
+
+    <div class="container">
+
+     <div class="lista-tipo">
+          <p 
+          [ngClass]="{'seleccion': tipo_venta != 0, 'seleccion-activa': tipo_venta == 0}"
+          (click)="cargar_venta(0)">
+          Transporte</p> 
+          <p 
+          [ngClass]="{'seleccion': tipo_venta != 1, 'seleccion-activa': tipo_venta == 1}"
+          (click)="cargar_venta(1)">
+          Unificar</p> 
+          <p 
+          [ngClass]="{'seleccion': tipo_venta != 2, 'seleccion-activa': tipo_venta == 2}"
+          (click)="cargar_venta(2)">
+          Recogida</p>
+          <p 
+          [ngClass]="{'seleccion': tipo_venta != 3, 'seleccion-activa': tipo_venta == 3}"
+          (click)="cargar_venta(3)">
+          Frío</p>
+        <mat-chip-list style="justify-content: space-around;width: 100%;display: none;place-content: stretch center;align-items: stretch;">
+            
+          
+             <mat-chip (click)="openDialog()" *ngIf="!lugar_elegido" class="matchip">Ubicación</mat-chip>
+             <mat-chip (click)="openDialog()" *ngIf="lugar_elegido" class="matchip">{{lugar_elegido.place_name | slice:0:9}}...<button matChipRemove (click)="borrar_ubicacion();recarga_lista()">
+                  <mat-icon >cancel</mat-icon>
+                </button></mat-chip>
+             <mat-chip *ngIf="!categoria_elegida" class="matchip" (click)="elegir_categoria()">
+                  <mat-label>Categoría</mat-label>
+             </mat-chip>
+             <mat-chip *ngIf="categoria_elegida" class="matchip">{{categorias[categoria_elegida.id].text  | slice:0:9}}<button matChipRemove (click)="borrar_categoria();recarga_lista()">
+                  <mat-icon>cancel</mat-icon>
+                </button></mat-chip>
+
+              <mat-chip  class="matchip" (click)="elegir_zona()" *ngIf="zona.id == 0"><mat-label>Unificar</mat-label></mat-chip>
+
+              <mat-chip  class="matchip" *ngIf="zona.id != 0">{{zona.nombre}}<button matChipRemove (click)="borrar_zona();recarga_lista()">
+                <mat-icon>cancel</mat-icon>
+              </button></mat-chip>
+
+        </mat-chip-list>
+
+     </div>
+
+     <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     >
+
+
+     <h4 style="text-align: center;">Productos cercanos a <b>{{lugar_elegido.text_es}}</b></h4>
+
+     </div>
+
+
+<!--<button (click)="recarga_lista()"> RELOAD</button>-->
+
+
+
+<div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center">
+
+     <div class="center" *ngIf="busqueda_vacia">
+      <p>No hay resultados en su búsqueda</p>
+    </div>
+
+    <div fxFlex="33"
+         fxFlex.lg="33"
+         fxFlex.xl="25"
+         fxFlex.sm="40"
+         fxFlex.xs="50"
+         fxLayoutAlign="center"
+         class="caja-producto"
+         
+         *ngFor="let producto of productos | slice:start:end; let i=index">
+       
+        <app-producto-tarjeta [producto]="producto"></app-producto-tarjeta>
+    </div>
+
+    <div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         fxLayoutAlign="center"
+         style="margin-top:40px;"
+         *ngIf="productos.length > 6 && productos.length > end">
+       
+         <button mat-raised-button (click)="ver_mas()">Ver más</button>
+
+         
+    </div>
+    
+</div>
+
+
+</div>
+
+
+
+</ng-template>
+

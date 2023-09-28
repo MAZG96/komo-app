@@ -1,0 +1,165 @@
+
+<mat-card  *ngIf="producto.stock > 0 && !esproductor">
+    <div class="contenedor">
+    <app-boton-carro class="boton-compra" [id_producto]="producto.id" [esCarrito]="false" *ngIf="usuario_logueado.id != producto.id_usuario"></app-boton-carro>
+    <app-boton-carro class="boton-compra" [id_producto]="producto.id" [esCarrito]="false" *ngIf="usuario_logueado.id == producto.id_usuario" style="visibility: hidden;"></app-boton-carro>
+    
+
+    
+    <img mat-card-image [src]="producto | imagen" 
+    (click)="ir_productor()"
+    onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'"
+    >
+
+    <img class="imagen-usuario" [src]="usuario | imagenuser" onError="this.src='assets/productos/no-profile-image.png'" (click)="ir_productor()">
+               
+
+    
+    </div>
+
+    <mat-card-title>{{ producto.nombre | titlecase}}<br>{{ producto.precio}} EUR<br><small>{{producto.cantidad}}</small>
+        
+        <!--<br>{{ producto.precio_kg}} Kg/ud--></mat-card-title>
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.0-0' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+
+    
+        
+       
+<!--
+    <mat-card-content>
+        <mat-card-subtitle>{{ producto.descripcion }}</mat-card-subtitle>
+    </mat-card-content>
+    -->
+
+
+    <!--
+    <mat-card-actions>
+        <button mat-button 
+                color="warn"
+                [routerLink]="['/productos', producto.id ]">
+            Leer más...
+        </button>
+
+        <button mat-button 
+                color="info"
+                [routerLink]="['/productos/editar', producto.id ]">
+            Editar
+        </button>
+    </mat-card-actions>
+    -->
+
+
+</mat-card>
+
+<mat-card  *ngIf="producto.stock <= 0 && !esproductor" (click)="ir_productor()">
+    <div class="contenedor contenedor-stock" >
+    <a 
+    class="texto-stock"
+    color="basic">
+    En Producción
+    </a>
+
+    <a 
+    class="texto-stock"
+    color="basic"
+    *ngIf="comprobar_dia_venta(usuario) == false">
+    En Producción
+    </a>
+    <img mat-card-image [src]="producto | imagen" (click)="false" onError="this.src='https://komo-rest.herokuapp.com/files//no-image.png'">
+
+    <img class="imagen-usuario" [src]="usuario | imagenuser" onError="this.src='assets/productos/no-profile-image.png'" (click)="ir_productor()">
+
+    </div>
+
+    <mat-card-title>{{ producto.nombre | titlecase}}<br>{{ producto.precio}} EUR<br><small>{{producto.cantidad}}</small>
+        
+        <!--<br>{{ producto.precio_kg}} Kg/ud--></mat-card-title>
+
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.0-0' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+    
+</mat-card>
+
+
+
+<mat-card  *ngIf="(producto.stock > 0 && esproductor) && comprobar_dia_venta(usuario)">
+    <div class="contenedor ">
+    <app-boton-carro class="boton-compra" [id_producto]="producto.id" [esCarrito]="false" *ngIf="usuario_logueado.id != producto.id_usuario"></app-boton-carro>
+    <app-boton-carro class="boton-compra" [id_producto]="producto.id" [esCarrito]="false" *ngIf="usuario_logueado.id == producto.id_usuario" style="visibility: hidden;"></app-boton-carro>
+    
+    
+    <img mat-card-image [src]="producto | imagen" 
+    (click)="ir_producto()"
+    onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'"
+    >
+
+
+    <img class="imagen-usuario" [src]="usuario | imagenuser" onError="this.src='assets/productos/no-profile-image.png'" (click)="ir_productor()">
+               
+
+    
+    
+    </div>
+
+    <mat-card-title>{{ producto.nombre | titlecase}}<br>{{ producto.precio}} EUR<br><small>{{producto.cantidad}}</small>
+        
+        <!--<br>{{ producto.precio_kg}} Kg/ud--></mat-card-title>
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.0-0' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+
+    
+        
+       
+<!--
+    <mat-card-content>
+        <mat-card-subtitle>{{ producto.descripcion }}</mat-card-subtitle>
+    </mat-card-content>
+    -->
+
+
+    <!--
+    <mat-card-actions>
+        <button mat-button 
+                color="warn"
+                [routerLink]="['/productos', producto.id ]">
+            Leer más...
+        </button>
+
+        <button mat-button 
+                color="info"
+                [routerLink]="['/productos/editar', producto.id ]">
+            Editar
+        </button>
+    </mat-card-actions>
+    -->
+
+
+</mat-card>
+
+<mat-card  *ngIf="(producto.stock <= 0 && esproductor) || comprobar_dia_venta(usuario) == false" (click)="false"  (click)="ir_producto()">
+    <div class="contenedor contenedor-stock">
+
+    <a 
+    class="texto-stock"
+    color="basic">
+    En Producción
+    </a>
+
+
+    <img mat-card-image [src]="producto | imagen" (click)="false" 
+    onError="this.src='https://www.apikomolocalfoods.es/files//no-image.png'">
+
+
+    <img class="imagen-usuario" [src]="usuario | imagenuser" onError="this.src='assets/productos/no-profile-image.png'" (click)="ir_productor()">
+
+    </div>
+
+    <mat-card-title>{{ producto.nombre | titlecase}}<br>{{ producto.precio}} EUR<br><small>{{producto.cantidad}}</small>
+        
+        <!--<br>{{ producto.precio_kg}} Kg/ud--></mat-card-title>
+
+        <mat-card-subtitle *ngIf="producto.distancia_punto"> A {{producto.distancia_punto | number : '1.0-0' }}Km</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="1 >= producto.distancia_punto">A menos de 1 Km</mat-card-subtitle>
+    
+</mat-card>

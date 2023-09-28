@@ -1,0 +1,41 @@
+
+    <div fxFlex="100"
+    fxFlex.lg="100"
+    fxFlex.sm="100"
+    fxFlex.xs="100"
+    style="display:flex;justify-content: center;">
+        <div class="search-container">
+
+            
+                <input type="text" 
+                class="form-control" 
+                placeholder="Introduce tu municipio / código postal"
+                #txtQuery
+                [value]="txt_ej"
+                (keyup)="onQueryChanged(txtQuery.value)">
+                
+
+                <button mat-icon-button [disabled]="txt_ej == ''" aria-label="Example icon button with a open in new tab icon" class="boton_borrar" (click)="limpiar_barra()">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            
+            
+            
+            <div *ngIf="isLoadingPlaces" 
+            class="alert alert-primary nt-2 text-center">
+                <h6>Cargando</h6>
+                <span>Espere, pro favor...</span>
+            </div>
+            
+            <ul class="list-group mb-2" *ngIf="places.length > 0">
+                <li class="list-group-item list-group-item-action pointer"
+                    [class.active]="place.id === selected_id"
+                    *ngFor="let place of places"
+                    (click)="flyTo(place)">
+                    <p>{{place.place_name}}</p>
+                </li>
+            </ul>
+        
+        </div>
+
+    </div>    

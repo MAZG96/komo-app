@@ -1,0 +1,19 @@
+<mat-grid-list cols="1" *ngIf="!pedido ; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto>
+<div class="container">
+    <div class="hijo">
+        <h1>Pedido realizado con éxito</h1>
+        <h3>Le enviaremos un correo a {{pedido.email}} con la información del pedido</h3>
+        <button mat-raised-button routerLink="/productos/pedidos">Ver Detalles del pedido</button>
+        <h5>*Podrá consultar la información de su pedido cuando desee, en el perfil, apartado Comprados</h5>
+
+    </div>
+</div>
+
+</ng-template>

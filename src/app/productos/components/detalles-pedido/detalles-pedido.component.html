@@ -1,0 +1,23 @@
+<mat-grid-list cols="1" *ngIf="!item_uno || !pedido ; else divPedido">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+  
+<ng-template #divPedido>
+    <mat-card-title-group >
+        <mat-card-title >{{pedido.nombre | titlecase}}
+            <button mat-raised button color="primary" (click)="DialogMostrarDetallesPedido()" class="boton-continuar" aria-label="Ver detalles del Pedido">Ver Comprador</button>
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 0">Envío Individual</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 1">Envío Conjunto</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 2">Recogida</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="pedido.tipo_venta == 3">Envío Frío</mat-card-subtitle>
+        <mat-card-subtitle>{{pedido.createdAt |  date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+        <mat-card-subtitle>Total Vendido: <b>{{total_venta}}EUR</b></mat-card-subtitle>
+    </mat-card-title-group>
+
+    <button  class="boton-continuar" mat-raised-button (click)="DialogMostrarPuntosUPS()">Instrucciones de Venta</button>
+</ng-template>

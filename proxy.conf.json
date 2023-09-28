@@ -1,0 +1,8 @@
+
+{
+    "/api/*": {
+        "target": "https://onlinetools.ups.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

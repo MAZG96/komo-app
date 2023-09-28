@@ -1,0 +1,80 @@
+<mat-grid-list cols="1" *ngIf="!cargado ; else divProducto">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
+<ng-template #divProducto >
+
+<div fxFlex="100"  fxFlexAlign="center center" fxLayout="column">
+
+  <h3>Elige el método para obtener tus productos de <b>{{nombre_empresa}}</b></h3>
+
+    <div fxLayout="row" 
+         fxLayout.xs="row" 
+         fxFlexAlign="center"
+         >
+
+         <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !metodo_envio, 'caja-metodo-active': metodo_envio}"
+         (click)="envio()"
+        >
+            <mat-icon>markunread_mailbox</mat-icon>
+          <p>Envío</p>
+        </div>
+
+        <div fxLayout="column"
+        [ngClass]="{'caja-metodo': metodo_envio, 'caja-metodo-active': !metodo_envio}"
+        (click)="recogida()"
+        *ngIf="metodo_recogida">
+
+            <mat-icon>nature_people</mat-icon>
+          <p>Recogida</p>
+        </div>
+
+        
+        
+
+    </div>
+
+    <div fxLayout="column" 
+    fxLayout.xs="column" 
+    fxFlexAlign="center"
+    *ngIf="metodo_envio"
+    >
+
+   <h4>Rellena los datos del pedido para recibirlo en el lugar que desees.</h4>
+
+   <button mat-raised-button (click)="asignar_metodo_envio()">Aceptar</button>
+
+
+    </div>
+
+    <div fxLayout="column" 
+         fxLayout.xs="column" 
+         fxFlexAlign="center"
+         *ngIf="!metodo_envio"
+         
+         >
+
+         <h4 *ngIf="pago_en_recogida == 1"><b>{{nombre_empresa}} pide el pago en el punto de recogida</b></h4 >
+         <h4 >Elige que día vas a por los productos de <b>{{nombre_empresa}}</b></h4 >
+         <mat-form-field >
+           <mat-label>Horario de recogida</mat-label>
+           <select matNativeControl [(ngModel)]="horario_elegido">
+               <option  *ngFor="let item of horas" [value]="item">{{item}}</option>
+           </select>
+         </mat-form-field>
+
+         <button mat-raised-button (click)="asignar_metodo_recogida()" [disabled]="horario_elegido == ''">Aceptar</button>
+
+    </div>
+
+    
+
+
+</div>
+
+</ng-template>

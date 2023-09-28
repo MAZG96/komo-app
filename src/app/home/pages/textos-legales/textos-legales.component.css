@@ -1,0 +1,17 @@
+.headerNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 0px solid;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+
+  mat-tab-group{
+    margin-top: 50px;
+}

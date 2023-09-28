@@ -1,0 +1,11 @@
+.mat-card-sm-image{
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
+    margin-right: 20px;
+}
+
+.example-card{
+    margin: 10px;
+}

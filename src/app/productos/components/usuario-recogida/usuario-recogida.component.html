@@ -1,0 +1,15 @@
+<mat-card class="example-card" *ngIf="usuario">
+    <mat-card-title-group >
+      <mat-card-subtitle *ngIf="usuario.pago_recogida == 1"><b>Pago en recogida</b></mat-card-subtitle>
+      <mat-card-subtitle>Direccion de recogida: <b>{{usuario.calle}}</b></mat-card-subtitle>
+      <mat-card-subtitle>
+        <p>Elige cuando vas a recoger los productos:</p>
+      <mat-form-field >
+            <mat-label>Horario de recogida</mat-label>
+                <select matNativeControl [(ngModel)]="horario_elegido" (click)="asignar_metodo_recogida()">
+                    <option  *ngFor="let item of horas" [value]="item" >{{item}}</option>
+                </select>
+            </mat-form-field>
+    </mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card>

@@ -1,0 +1,32 @@
+
+
+<div fxLayout="row wrap"
+fxLayout.xs="row wrap"
+fxLayoutAlign="start">
+<label id="example-radio-group-label">Elige el peso total del producto</label>
+
+<div fxFlex="50"  fxFlexAlign="center center" fxLayout="column">
+
+
+  <mat-radio-button class="example-radio-button" *ngFor="let peso of pesos1" [value]="peso" (click)="asignar_peso(peso)">
+    {{peso.info}}
+  </mat-radio-button>
+</div>
+
+<div fxFlex="50"  fxFlexAlign="center center" fxLayout="column">
+
+  <mat-radio-button class="example-radio-button" *ngFor="let peso of pesos2" [value]="peso" (click)="asignar_peso(peso)">
+    {{peso.info}}
+  </mat-radio-button>
+
+
+
+</div>
+
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+
+</div>

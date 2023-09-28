@@ -1,0 +1,26 @@
+
+  .imagen-usuario{
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+  }
+  
+
+  
+
+  .example-full-width {
+    width: 100%;
+  }
+  
+
+  
+  .star {
+    --br-font-size: 12px;
+    --br-active-color: #ed7b67;
+    --br-inactive-color: #d2d2d2;
+  }
+  
+  .bar {
+    --br-active-color: #17c9c9;
+  }

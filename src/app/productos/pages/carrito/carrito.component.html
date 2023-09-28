@@ -1,0 +1,87 @@
+<div class="container">
+
+<h2>Cesta: </h2>
+<p>Productos en la cesta:</p>
+
+<mat-divider></mat-divider>
+
+<div class="lista-tipo">
+
+  <p 
+  [ngClass]="{'seleccion': tipo_venta != 0, 'seleccion-activa': tipo_venta == 0}"
+  (click)="transporte_n == 0 || cargar_venta(0)">
+  Tansporte({{transporte_n}})</p> 
+  <p 
+  [ngClass]="{'seleccion': tipo_venta != 1, 'seleccion-activa': tipo_venta == 1}"
+  (click)="unificar_n == 0 || cargar_venta(1)">
+  Unificar({{unificar_n}})</p> 
+  <p 
+  [ngClass]="{'seleccion': tipo_venta != 2, 'seleccion-activa': tipo_venta == 2}"
+  (click)="recogida_n == 0 ||cargar_venta(2)">
+  Recogida({{recogida_n}})</p>
+  <p 
+  [ngClass]="{'seleccion': tipo_venta != 3, 'seleccion-activa': tipo_venta == 3}"
+  (click)="frio_n == 0 ||cargar_venta(3)">
+  Frío({{frio_n}})</p>
+
+</div>
+
+<h3 *ngIf="cart.length == 0">No hay productos en la cesta</h3>
+
+
+  <div fxLayout="column wrap"
+  fxLayout.xs="column wrap"
+  fxLayoutAlign="center">
+
+     
+
+    <div fxFlex="100"
+         fxFlex.lg="100"
+         fxFlex.sm="100"
+         fxFlex.xs="100"
+         *ngFor="let item of carrito_tipo_venta">
+
+         <mat-card class="example-card" *ngIf="(item.estado != 'No Disponible' && item.estado != 'No Stock')">
+            <mat-card-title-group >
+              <mat-card-title >{{item.estado | titlecase}}</mat-card-title>
+              <img mat-card-sm-image [src]="item | carrito" >
+              <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <mat-card-title style="width:100px;"><app-boton-carro [id_producto]="item.id_producto" [esCarrito]="true" (click)="cambiar_total()"></app-boton-carro></mat-card-title>   
+              <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
+            </mat-card-title-group>
+          </mat-card>
+
+          <mat-card class="example-card" *ngIf="item.estado == 'No Disponible'">
+            <mat-card-title-group >
+              <mat-card-subtitle class="no-stock">{{item.estado| titlecase}}</mat-card-subtitle>
+              <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <img mat-card-sm-image [src]="item | carrito" >
+              <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
+            </mat-card-title-group>
+          </mat-card>
+
+          <mat-card class="example-card" *ngIf="item.estado == 'No Stock'">
+            <mat-card-title-group >
+              <mat-card-subtitle class="no-stock">{{item.estado| titlecase}}</mat-card-subtitle>
+              <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <img mat-card-sm-image [src]="item | carrito" >
+              <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
+            </mat-card-title-group>
+          </mat-card>
+  </div>
+
+  </div>
+  <mat-toolbar class="total_cart" *ngIf="cart.length != 0">
+    <h1 class="total">Total: {{total | number: '.1-2'}} EUR</h1>
+  
+    <button class="boton-continuar" mat-raised-button  (click)="continuar_compra()">
+      Continuar -></button>
+  </mat-toolbar>
+
+    <div class="spacing">
+  
+    </div>
+  </div>

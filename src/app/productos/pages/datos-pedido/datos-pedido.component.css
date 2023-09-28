@@ -1,0 +1,127 @@
+.mat-flat-button{
+    font-size: 0.9em;
+}
+
+
+.mat-flat-button:hover{
+    font-weight: bold;
+}
+
+.active{
+    font-weight: bold;
+}
+
+p{
+    margin: 0px;
+    font-size: 13px;
+}
+
+.bloque-pago{
+    margin: 10px;
+    height: 70vh;
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.mat-icon{
+    color: #666666;
+}
+
+
+.caja-metodo{
+    width: 20%;
+    margin: 10px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid #666666;
+}
+
+.delete{
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+}
+
+.resumen-header{
+    position: fixed;
+    width: 100%;
+    margin-top: -10px;
+    left: 0px;
+    background-color: white;
+    z-index: 99;
+}
+
+.mat-chip{
+    width: auto;
+    background-color: white!important;
+    color: black;
+    align-items: center;
+    padding-left:  4px;
+    padding-right: 4px;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 50px;
+    margin-bottom: 10px;
+  }
+
+
+
+.caja-metodo-active{
+    width: 20%;
+    margin: 10px;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    color: black;
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+
+.caja-metodo-active p{
+    
+    font-weight: bold;
+    color: black;
+
+}
+
+.caja-metodo-active .mat-icon{
+    
+    color: black;
+
+}
+
+.total{
+    text-align: left!important;
+}
+
+mat-icon{
+    vertical-align: middle;
+}
+
+.total_cart{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    justify-content: center;
+    padding: 1em;
+    margin-bottom:55px;
+    background-color: white;
+    border-top: 1px solid;
+}
+
+
+.cl{
+    margin: 10px;
+}
+
+
+

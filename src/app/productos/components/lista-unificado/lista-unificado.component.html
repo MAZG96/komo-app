@@ -1,0 +1,45 @@
+<div *ngIf="carro_ordenado">
+    <h2 style="text-align: center;">Artículos Unificados</h2>
+
+
+<div fxLayout="row wrap"
+fxLayout.xs="row wrap"
+fxLayoutAlign="center"
+*ngFor="let indice of indices; let i = index"
+> 
+
+<div fxFlex="100" *ngIf="indice!=0">
+    <app-zona-nombre [id_zona]="indice"></app-zona-nombre>
+    <mat-divider></mat-divider>
+</div>
+
+
+
+<div fxFlex="100"
+   class="listado-articulos" *ngIf="indice!=0"> 
+        <div *ngFor="let item of carro_ordenado[indice]" class="bloque-producto">
+            <button class="btn-delete" (click)="DialogModificarCarrito(item)"><mat-icon>edit</mat-icon></button>
+            <img [src]="item.foto" >
+        </div>
+</div>
+
+
+
+<div fxFlex="100">
+<mat-divider></mat-divider>
+</div>
+
+<app-total-pedido [carrito_unificado]="carro_ordenado[indice]" (newItemEvent)="get_output($event)"></app-total-pedido>
+
+</div>
+
+<mat-divider></mat-divider>
+
+
+
+
+
+
+
+
+</div>

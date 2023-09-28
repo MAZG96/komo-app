@@ -1,0 +1,100 @@
+
+    <div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="center"
+    class="cuerpo"
+    >
+
+
+
+
+    <div fxLayout="row wrap"
+    fxLayout.xs="row wrap"
+    fxLayoutAlign="center"
+    class="headerNav">
+   
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <!--<button mat-menu-item >
+          <mat-icon>info</mat-icon>
+          <span>Saber más</span>
+        </button>-->
+
+        <button mat-menu-item (click)="ir_soy_komo()">
+          <mat-icon>info</mat-icon>
+          <span>Soy KOMO</span>
+        </button>
+
+        <button mat-menu-item (click)="ir_perfil_productor()">
+          <mat-icon>nature_people</mat-icon>
+          <span>Soy productor</span>
+        </button>
+
+        <button mat-menu-item (click)="ir_textos_legales()">
+          <mat-icon>list_alt</mat-icon>
+          <span>Textos Legales</span>
+        </button>
+
+        
+        <!--<button mat-menu-item>
+          <mat-icon>contact_support</mat-icon>
+          <span>Contacto</span>
+        </button>-->
+      </mat-menu>
+
+    <img src="https://komolocalfoods.com/assets/productos/logo-blanco.png" width="90" style="margin: auto;padding-top: 0px;text-align: center;" routerLink="/productos/listado" >
+    <button>
+        <mat-icon class="material-icons color_blue" style="color:transparent">logout</mat-icon>
+    </button>
+
+    </div>
+
+        <div fxFlex="100"
+        fxFlex.lg="100"
+        fxFlex.sm="100"
+        fxFlex.xs="100"
+        style="padding-left: 20px;padding-right: 20px; margin-top: 0px;text-align: center;;">
+
+        <h3>Llena tu mesa con productos locales, sostenibles y llenos de amor</h3>
+
+          <app-barra-buscar></app-barra-buscar>
+
+          <button mat-raised-button 
+          color="primary"
+          class="boton-home"
+          (click)="llamar_barra()"
+          style="margin-top: 70px;"
+          >
+              Encuéntralos
+          </button>
+        
+        </div>
+
+
+        <div fxFlex="100"
+        fxFlex.lg="100"
+        fxFlex.sm="100"
+        fxFlex.xs="100"
+        class="pie-home">
+
+            <div fxFlex="100">
+              <p *ngIf="usuario">{{usuario.email}}</p>
+
+            </div>
+        
+            <div fxFlex="100">
+               
+            </div>
+
+            <div fxFlex="100" (click)="ir_perfil_productor()">
+                <p>Soy productor</p>
+            </div>
+    
+        
+        </div>
+    </div>
+
+    
+

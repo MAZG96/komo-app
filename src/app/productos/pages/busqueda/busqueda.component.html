@@ -1,0 +1,63 @@
+<div class="container">
+     <mat-chip-list>
+          <mat-chip  *ngIf="!lugar_elegido">Ubicación</mat-chip> <!--(click)="openDialog()"-->
+          <mat-chip  *ngIf="lugar_elegido">{{lugar_elegido.place_name | slice:0:40}}...<!--(click)="openDialog()";(click)="borrar_ubicacion()"-->
+               ></mat-chip>
+          <mat-chip *ngIf="!categoria_elegida">
+               <mat-label>Categoría</mat-label>
+               <select matNativeControl [(ngModel)]="categoria_elegida" name="car" class="selector_categoria" >
+               <option *ngFor="let categoria of categorias" [value]="categoria.id" class="flecha">
+                 {{categoria.text}}
+               </option>
+             </select></mat-chip>
+          <mat-chip *ngIf="categoria_elegida">{{categorias[categoria_elegida].text}}<button matChipRemove (click)="borrar_categoria()">
+               <mat-icon>cancel</mat-icon>
+             </button></mat-chip>
+     </mat-chip-list>
+
+</div>
+<h2>Categorías</h2>
+<div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+    >
+
+     
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         fxFlex.xs="45"
+         *ngFor="let categoria of categorias">
+
+         <button mat-raised-button (click)="seleccionar_categoria(categoria)" >{{categoria.text}}</button>
+
+    </div>
+
+    
+
+
+    <mat-toolbar class="btn-comprar">
+
+     <button mat-raised-button 
+     style="background-color:#e3c4b3"
+     *ngIf="lugar_elegido && categoria_elegida"
+     [routerLink]="['/productos/busqueda/resultado', categoria_elegida.id]">
+     <mat-icon>search</mat-icon>
+     Buscar
+     </button>
+
+     <button mat-raised-button 
+     style="background-color:#e3c4b3"
+     *ngIf="lugar_elegido && !categoria_elegida"
+     [routerLink]="['/productos/busqueda/resultado', 20]">
+     <mat-icon>search</mat-icon>
+     Buscar
+     </button>
+
+     </mat-toolbar>
+
+</div>
+
+
+     

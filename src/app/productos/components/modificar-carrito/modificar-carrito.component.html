@@ -1,0 +1,29 @@
+<mat-grid-list cols="1" *ngIf="!cargado ; else divCarrito">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divCarrito>
+<mat-card class="example-card" *ngIf="(item.estado != 'No Disponible' && item.estado != 'No Stock')">
+    <mat-card-title-group >
+      <mat-card-title >{{item.estado | titlecase}}</mat-card-title>
+      <img mat-card-sm-image [src]="item | carrito" >
+      <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+      <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+      <mat-card-title style="width:100px;margin-bottom: 30px;"><app-boton-carro-privado [id_producto]="item.id_producto" [esCarrito]="true" ></app-boton-carro-privado></mat-card-title>   
+      <button class="btn-delete" (click)="borrarproducto()"><mat-icon>delete_outline</mat-icon></button>
+    </mat-card-title-group>
+</mat-card>
+
+
+<mat-card class="example-card" *ngIf="tpo == 2">
+  <mat-card-title-group >
+    <mat-card-subtitle *ngIf="item.pago_recogida == 1"><b>Pago en recogida</b></mat-card-subtitle>
+    <mat-card-subtitle>Direccion de recogida: <b>{{usuario.calle}}</b></mat-card-subtitle>
+    <mat-card-subtitle *ngIf="item.recogida != 'recogida'">Horario de recogida: <b>{{item.recogida}}</b></mat-card-subtitle>  
+  </mat-card-title-group>
+</mat-card>
+
+</ng-template>

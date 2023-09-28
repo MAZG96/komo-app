@@ -1,0 +1,68 @@
+
+<mat-grid-list cols="1" *ngIf="!cargado ; else divProducto">
+     <mat-grid-tile>
+         <mat-spinner></mat-spinner>
+     </mat-grid-tile>
+ </mat-grid-list>
+ 
+ 
+ 
+<ng-template #divProducto >
+<div class="container" >
+
+     <h1 style="text-align: center;">Resumen Pedido</h1>
+     
+
+
+     <div fxLayout="row wrap"
+          fxLayout.xs="row wrap"
+          fxLayoutAlign="center"
+          *ngFor="let indice of indices; let i = index"
+          > 
+
+          
+          <h3>Productos de {{usuarios[i].nombre_empresa}}</h3>
+          
+
+          <div fxFlex="100"
+          fxFlex.lg="100"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          fxFlexAlign="center">
+
+               <p style="text-align:center">¿Cómo desea obtener sus productos?</p>
+
+          </div>
+          <br>
+          <p *ngIf="carro_ordenado[indice][0].recogida != 'envio'"><button mat-raised-button class="cl" (click)="DialogHorarios(i)" ><mat-icon>edit</mat-icon> Editar: </button>
+          Recoger: <b>{{carro_ordenado[indice][0].recogida}}</b></p>
+
+          <p *ngIf="carro_ordenado[indice][0].recogida == 'envio'">
+          <button mat-raised-button class="cl" (click)="DialogHorarios(i)" ><mat-icon>edit</mat-icon> Editar: </button>
+          <b>Envío a domicilio</b> </p>
+
+     <div fxFlex="100"
+          fxFlex.lg="100"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          fxFlexAlign="center"
+          *ngFor="let item of carro_ordenado[indice]">
+
+          <app-item-pedido [item]="item" [recoger_pedido]="recoger_pedido"></app-item-pedido>
+
+     </div>
+
+
+     <mat-toolbar class="total_cart" *ngIf="cart.length != 0 && recoger_pedido">
+          <h1 class="total">Total: {{total | number: '.1-2'}} EUR</h1>
+        
+          <button mat-raised-button routerLink="/productos/info-pedido">
+            Continuar -></button>
+     </mat-toolbar>
+
+</div>
+
+</div>
+
+
+</ng-template>

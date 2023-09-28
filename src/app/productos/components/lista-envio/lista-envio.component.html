@@ -1,0 +1,42 @@
+<div>
+    <h2 style="text-align: center;" *ngIf="tpo == 0">Artículos Envío Individual</h2>
+    <h2 style="text-align: center;" *ngIf="tpo == 1">Artículos Unificados</h2>
+    <h2 style="text-align: center;" *ngIf="tpo == 2">Artículos Recogida</h2>
+    <h2 style="text-align: center;" *ngIf="tpo == 3">Artículos Frío</h2>
+
+
+
+
+<div fxLayout="row wrap"
+fxLayout.xs="row wrap"
+fxLayoutAlign="center"
+*ngFor="let indice of indices; let i = index"> 
+
+<div fxFlex="100" >
+    <app-zona-nombre [id_zona]="indice"></app-zona-nombre>
+    <mat-divider></mat-divider>
+</div>
+
+
+<div fxFlex="100"
+   class="listado-articulos"> 
+        <div *ngFor="let item of carro_ordenado[indice]" class="bloque-producto">
+            <button class="btn-delete" (click)="DialogModificarCarrito(item)"><mat-icon>edit</mat-icon></button>
+            <img [src]="item.foto" >
+        </div>
+</div>
+
+<app-usuario-recogida [id_usuario]="indice" *ngIf="tpo == 2"></app-usuario-recogida>
+
+
+<div fxFlex="100">
+<mat-divider></mat-divider>
+</div>
+
+<app-total-pedido [carrito_unificado]="carro_ordenado[indice]" (newItemEvent)="get_output($event)"></app-total-pedido>
+
+</div>
+
+<mat-divider></mat-divider>
+
+</div>

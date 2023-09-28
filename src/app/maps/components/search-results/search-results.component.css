@@ -1,0 +1,28 @@
+.pointer{
+    cursor:pointer;
+}
+
+p {
+    font-size:12px;
+}
+
+.search-container{  
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 1px solid rgba(0,0,0,0.1);
+
+}
+
+input{
+    width: 60%;
+}
+
+.aplicar-btn{
+    padding: 0px;
+    width: 20%;
+}
+
+.volver-btn{
+    width: 10%;
+}

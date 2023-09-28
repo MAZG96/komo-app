@@ -1,0 +1,16 @@
+<mat-grid-list cols="1" *ngIf="!pedido ; else divProducto">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto>
+<div class="container">
+    <div class="hijo">
+        <h1>Tu cuenta esta activada</h1>
+        <button mat-raised-button routerLink="/auth/login">Acceder</button>
+    </div>
+</div>
+
+</ng-template>

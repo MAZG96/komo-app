@@ -1,0 +1,36 @@
+<mat-grid-list cols="1" *ngIf="!usuario  ; else divProducto">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divProducto>
+<mat-card class="example-card">
+    <mat-card-title-group >
+      <img mat-card-sm-image [src]="item.foto" >
+      <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+      <mat-card-subtitle>{{item.precio}}EUR x {{item.cantidad}}uds.</mat-card-subtitle>
+      <mat-card-subtitle><b>Subtotal:</b> {{item.precio * item.cantidad}}EUR</mat-card-subtitle>  
+
+    </mat-card-title-group>
+  </mat-card>
+  
+
+  <mat-card class="example-card" *ngIf="item.recogida != 'envio' && item.recogida != 'unificado' && item.recogida != 'frio'">
+    <mat-card-title-group >
+      <mat-card-subtitle *ngIf="item.pago_recogida == 1"><b>Pago en recogida</b></mat-card-subtitle>
+      <mat-card-subtitle >Direccion de recogida: <b>{{usuario.calle}}</b></mat-card-subtitle>
+      <mat-card-subtitle >Descripción: <b>{{usuario.descripcion}}</b></mat-card-subtitle>
+      <mat-card-subtitle >Horario de recogida: <b>{{item.recogida}}</b></mat-card-subtitle>  
+    </mat-card-title-group>
+  </mat-card>
+
+  <mat-card class="example-card" *ngIf="item.recogida == 'unificado'">
+    <mat-card-title-group >
+      <mat-card-subtitle><b>Contacto productor</b></mat-card-subtitle>
+      <mat-card-subtitle><a [href]="enlace_telefono">{{usuario.telefono_envio}}</a></mat-card-subtitle>  
+      <mat-card-subtitle><a [href]="enlace_correo">{{auth.email}}</a></mat-card-subtitle>  
+    </mat-card-title-group>
+  </mat-card>
+
+</ng-template>

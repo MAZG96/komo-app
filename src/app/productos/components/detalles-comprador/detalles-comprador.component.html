@@ -1,0 +1,12 @@
+<mat-grid-list cols="1" *ngIf="!pedido ; else divDetalles">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+<ng-template #divDetalles>
+    <p>Nombre: <b>{{pedido.nombre}}</b></p>
+    <p>Apellidos: <b>{{pedido.apellidos}}</b></p>
+    <p>Direccion: <b>{{pedido.calle}}, {{pedido.piso}}, {{pedido.localidad}}, {{pedido.codigo_postal}}</b></p>
+    <p>Provincia: <b>{{pedido.provincia}}</b></p>
+</ng-template>

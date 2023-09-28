@@ -1,0 +1,11 @@
+<mat-card class="example-card" >
+    <mat-card-title-group >
+        <mat-card-title >{{infoUser.nombre_empresa | titlecase}}</mat-card-title>
+        <img mat-card-sm-image [src]="infoUser | imagenuser" (click)="ir_productor()" 
+        skipLocationChange
+        onError="this.src='assets/productos/no-profile-image.png'">
+        <mat-card-subtitle >{{infoUser.ubicacion | slice:0:40}}<span *ngIf="infoUser.ubicacion.length > 40">...</span></mat-card-subtitle>
+        <button (click)="ir_productor()" skipLocationChange>Ver</button>
+      
+      </mat-card-title-group>
+</mat-card>

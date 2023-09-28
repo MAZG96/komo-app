@@ -1,0 +1,129 @@
+
+<div class="container" >
+    
+
+      <div class="bloque-pago"
+      *ngIf="!cargando_pago ; else divTotal">
+        <div fxLayout="row wrap"
+          fxLayout.xs="row wrap"
+          fxLayoutAlign="center"
+          >
+          <div fxFlex="100">
+            <h2 style="text-align:center;">Redirigiendo al pago</h2>
+          </div>
+          <div fxFlex="100">
+            <p style="text-align: center;">Pulsa aqui en caso de que no se redirija automáticamente al pago</p>
+          </div>
+          <div fxFlex="100"
+          fxLayoutAlign="center">
+            <button mat-raised-button (click)="ir_pago()"  style='margin: 20px'> Redirigir al Pago</button>
+          </div>
+          <div fxFlex="100"
+          fxLayoutAlign="center">
+            <mat-spinner></mat-spinner>
+          </div>
+          
+        </div>
+      </div>
+
+
+
+
+
+
+<ng-template #divTotal>
+
+  <div class="resumen-header">
+
+  
+
+
+<!--<div fxLayout="row" 
+         fxLayout.xs="row" 
+         fxFlexAlign="center"
+         style="margin-top: 10px;justify-content: center;"
+         >
+
+         <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !unificado, 'caja-metodo-active': unificado}"
+         (click)="toUnificado()"
+        >
+            <mat-icon>location_on</mat-icon>
+          <p>Unficado</p>
+        </div>
+
+        <div fxLayout="column"
+        [ngClass]="{'caja-metodo': !recogida, 'caja-metodo-active': recogida}"
+        (click)="toRecogida()"
+        >
+            <mat-icon>nature_people</mat-icon>
+          <p>Recogida</p>
+        </div>
+
+
+        <div fxLayout="column" 
+         [ngClass]="{'caja-metodo': !frio, 'caja-metodo-active': frio}"
+         (click)="toFrio()"
+        >
+                    <mat-icon>ac_unit</mat-icon>
+          <p>Frío</p>
+        </div>
+             
+
+    </div>-->
+
+    <h1 style="text-align: center;">Resumen Pedido</h1>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row wrap"
+         fxLayout.xs="row wrap"
+         fxLayoutAlign="center"
+         (click)="DialogModificarrInfoPedido()"
+         > 
+
+        <p>{{pedido.calle}} {{pedido.piso}}<mat-icon style="vertical-align:middle;font-size:16px;">edit</mat-icon></p>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+  </div>
+
+<div style="padding: 40px"></div>
+
+
+   <!--<app-lista-unificado id="uni" *ngIf="unificado" (newItemEvent)="get_total_unificado($event)" ></app-lista-unificado>
+
+   <div id="rec"></div>
+   <app-lista-recogida id="rec" *ngIf="recogida" (newItemEvent)="get_total_recogida($event)"></app-lista-recogida>-->
+
+   <app-lista-envio id="rec"  (newItemEvent)="get_total_unificado($event)"></app-lista-envio>
+
+   <!--<app-lista-frio *ngIf="frio" (newItemEvent)="get_total_frio($event)"></app-lista-frio>-->
+
+{{totales}}
+
+<div style="padding: 10px"></div>
+
+
+
+
+    <mat-toolbar class="total_cart" *ngIf="cart.length != 0">
+            <mat-spinner [diameter]="20" gutterSize="5px" *ngIf="(total_unificado + total_recogida) == 0 ; else divTotal"></mat-spinner>
+
+
+      <ng-template #divTotal>
+
+         <h1 class="total">Total: {{total_unificado + total_recogida + total_frio | number: '.1-2'}} EUR</h1>
+       
+         <button class="boton-continuar" mat-raised-button (click)="llamar_pago()" [disabled]="(total_unificado + total_recogida) == 0">
+           Continuar -></button>
+
+      </ng-template>
+
+    </mat-toolbar>
+
+
+
+

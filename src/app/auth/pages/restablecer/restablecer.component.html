@@ -1,0 +1,46 @@
+<!--<button mat-button (click)="login()">Entrar</button>-->
+
+<mat-card>
+    <button >
+        <mat-icon  routerLink='/auth/login' class="flecha-volver"  style="border-color: black;">keyboard_return</mat-icon>
+    </button>
+    <img  src="https://komolocalfoods.com/assets/productos/komo-logo.png" alt="KOMO">
+    <mat-card-title>Restablecer contraseña</mat-card-title>
+<mat-card-content>
+<form [formGroup]="miFormulario" (ngSubmit)="restablecer()">
+
+
+    <mat-form-field *ngIf="!logueado">
+        <mat-label>Nueva Contraseña</mat-label>
+        <input type="password" matInput placeholder="nueva contraseña" formControlName="password" autocomplete="new-password">
+        
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!logueado">
+        <mat-label>Confirmación Nueva Contraseña</mat-label>
+        <input type="password" matInput placeholder="confirmación nueva contraseña" formControlName="password_c" autocomplete="new-password">
+        
+    </mat-form-field>
+    
+
+  <p *ngIf="error" class="error">
+    {{texto_error}}
+  </p>
+
+  <div class="button" *ngIf="!logueado">
+    <button mat-raised-button type="submit" mat-button>Restablecer contraseña</button>
+  </div>
+
+  <div class="button" *ngIf="logueado">
+    <button mat-raised-button routerLink="auth/login">Volver al Login</button>
+  </div>
+
+
+
+</form>
+
+
+</mat-card-content>
+</mat-card>
+
+

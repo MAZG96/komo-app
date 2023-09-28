@@ -1,0 +1,196 @@
+<!--<div class="container">
+
+  <div fxLayout="row wrap"
+  fxLayout.xs="row wrap"
+  fxLayoutAlign="start center"
+>
+    <div fxFlex="50"
+    fxFlex.lg="50"
+    fxFlex.sm="50"
+    fxFlex.xs="50"
+    >
+    <h3>Hola {{usuario.name}}</h3>
+
+    </div>
+
+    <div fxFlex="50"
+    fxFlex.lg="50"
+    fxFlex.sm="50"
+    fxFlex.xs="50">
+
+    <button mat-raised-button 
+            color="primary"
+            (click)="logout()"
+            >
+        <mat-icon>exit_to_app</mat-icon>
+        Salir
+    </button>
+
+    </div>
+
+
+</div>
+
+</div>
+<mat-divider></mat-divider>
+
+<mat-tab-group #demo3Tab  mat-align-tabs="center" mat-stretch-tabs="false">
+    
+    <mat-tab label="Perfil"> <div class="container">      <app-info-usuario></app-info-usuario> </div></mat-tab>
+    <mat-tab label="Catálogo"> 
+      <div class="container">
+
+        <div fxLayout="row wrap"
+        fxLayout.xs="row wrap"
+        fxLayoutAlign="start"
+        fxLayoutGap="5px">
+   
+       <div fxFlex="100"
+            fxFlex.lg="100"
+            fxFlex.sm="100"
+            fxFlex.xs="100">
+      
+            <div fxLayout="row wrap"
+        fxLayout.xs="row wrap"
+        class="caja_add">
+
+        <div fxFlex="50"
+        fxFlex.lg="50"
+        fxFlex.sm="50"
+        fxFlex.xs="50">
+
+            <h2>Tus productos</h2>
+            <p>Estos son tus productos:</p>
+
+        </div>
+
+        <div fxFlex="50"
+            fxFlex.lg="50"
+            fxFlex.sm="50"
+            fxFlex.xs="50"
+            style="text-align: end;">
+
+          <button mat-fab  class="add_producto" color="primary" routerLink="/productos/agregar" aria-label="Add Producto">
+            <mat-icon>add</mat-icon>
+          </button>
+
+        </div>
+            </div>
+            
+
+
+<mat-divider></mat-divider>
+          
+           <app-producto-lista [productos]="productos"></app-producto-lista>
+
+           
+       </div>
+   </div>
+  </div>
+   </mat-tab>
+  
+    <mat-tab label="Comprados">
+      <div class="container">
+
+      
+      <div fxLayout="row wrap"
+        fxLayout.xs="row wrap"
+        fxLayoutAlign="start"
+        fxLayoutGap="5px">
+   
+       <div fxFlex="100"
+            fxFlex.lg="100"
+            fxFlex.sm="100"
+            fxFlex.xs="100">
+            
+    <h2>Tus pedidos</h2>
+    <p>Estos son tus pedidos:</p>
+
+    <mat-divider></mat-divider>
+              
+              <app-pedidos-lista [pedidos]="pedidos"></app-pedidos-lista>
+          </div>
+      </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="Vendidos"> 
+      <div class="container">
+
+        <div fxLayout="row wrap"
+        fxLayout.xs="row wrap"
+        fxLayoutAlign="start"
+        fxLayoutGap="5px">
+   
+       <div fxFlex="100"
+            fxFlex.lg="100"
+            fxFlex.sm="100"
+            fxFlex.xs="100">
+            
+    <h2>Tus ventas</h2>
+    <p>Estas son tus ventas:</p>
+
+    <mat-divider></mat-divider>
+
+      <app-vendidos-lista></app-vendidos-lista>
+    </div>
+  </div>
+</div>
+    </mat-tab>
+    
+  </mat-tab-group>-->
+
+  <div class="container">
+    <div fxLayout="row wrap"
+  fxLayout.xs="row wrap"
+  fxLayoutAlign="start center"
+>
+    <div fxFlex="50"
+    fxFlex.lg="50"
+    fxFlex.sm="50"
+    fxFlex.xs="50"
+    >
+    <h3>Hola {{usuario.name}}</h3>
+
+    </div>
+
+    <div fxFlex="50"
+    fxFlex.lg="50"
+    fxFlex.sm="50"
+    fxFlex.xs="50">
+
+    <button mat-raised-button 
+            color="primary"
+            (click)="logout()"
+            >
+        <mat-icon>exit_to_app</mat-icon>
+        Salir
+    </button>
+
+    </div>
+
+
+</div>
+
+      
+    <div fxLayout="row wrap"
+      fxLayout.xs="row wrap"
+      fxLayoutAlign="start"
+      fxLayoutGap="5px">
+ 
+     <div fxFlex="100"
+          fxFlex.lg="100"
+          fxFlex.sm="100"
+          fxFlex.xs="100">
+          
+  <h2>Tus pedidos</h2>
+  <p>Estos son tus pedidos:</p>
+
+  <mat-divider></mat-divider>
+            
+            <app-pedidos-lista [pedidos]="pedidos"></app-pedidos-lista>
+        </div>
+    </div>
+  </div>
+
+
+

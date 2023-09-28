@@ -1,0 +1,15 @@
+ 
+ <mat-tab-group mat-align-tabs="center" *ngIf="horario_cargado">
+      
+    <mat-tab label="L"> <div class="container">     <app-elegir-hora dia_semana="Lunes" (outputEmiter)="lunes($event)" [horario]="horario_lunes"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="M"> <div class="container">     <app-elegir-hora dia_semana="Martes" (outputEmiter)="martes($event)" [horario]="horario_martes"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="X"> <div class="container">     <app-elegir-hora dia_semana="Miercoles" (outputEmiter)="miercoles($event)" [horario]="horario_miercoles"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="J"> <div class="container">     <app-elegir-hora dia_semana="Jueves" (outputEmiter)="jueves($event)" [horario]="horario_jueves"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="V"> <div class="container">     <app-elegir-hora dia_semana="Viernes" (outputEmiter)="viernes($event)" [horario]="horario_viernes"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="S"> <div class="container">     <app-elegir-hora dia_semana="Sabado" (outputEmiter)="sabado($event)" [horario]="horario_sabado"></app-elegir-hora>  </div></mat-tab>
+    <mat-tab label="D"> <div class="container">     <app-elegir-hora dia_semana="Domingo" (outputEmiter)="domingo($event)" [horario]="horario_domingo"></app-elegir-hora>  </div></mat-tab>
+    
+</mat-tab-group>
+
+
+<button (click)="cerrar()">Salir</button>

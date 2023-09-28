@@ -1,0 +1,40 @@
+.container{
+  padding-left: 30px;
+      padding-right: 30px;
+}
+
+@media screen and (min-width: 768px) and  (max-width: 1024px){
+    .container-lg{
+        padding-left: 20%;
+      padding-right: 20%;
+    }
+}
+
+@media screen and (min-width: 1024px){
+
+    .container-lg{
+        padding-left: 30%;
+      padding-right: 30%;
+    }
+}
+
+
+.total{
+  text-align: left!important;
+  font-size: 13px;
+}
+
+.total_cart{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  justify-content: center;
+  padding: 5px;
+  margin-bottom:55px;
+  background-color: white;
+  border-top: 1px solid;
+}
+
+
+

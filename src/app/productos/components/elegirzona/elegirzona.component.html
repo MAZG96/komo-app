@@ -1,0 +1,37 @@
+<div fxFlex="100"  fxFlexAlign="center" fxLayout="column" >
+
+    <h3 style="text-align:center">¿Te gustaría saber si hay productos o productores cerca de ti?</h3>
+
+    <div fxFlex="80"  fxFlexAlign="center" fxLayout="column" >
+
+    <mat-form-field >
+        <mat-label>Introduce tu Código Postal</mat-label>
+        <input matInput
+               type="text"
+               [(ngModel)]="codigo_postal"
+               autocomplete="off"
+               (keyup)="comprobar_cp()"
+               maxlength="5"
+                   >
+                <mat-hint align="end">{{codigo_postal.length}} / 5</mat-hint>
+        <button *ngIf="zona.provincia" matSuffix mat-icon-button aria-label="Clear" (click)="elegir_zona()">
+        <mat-icon>check_circle_outline</mat-icon>
+        </button>
+    </mat-form-field>    
+
+    </div>
+    <div fxFlex="50"  fxFlexAlign="center" fxLayout="column">
+
+        <p *ngIf="zona.provincia">Zona: <b>{{zona.provincia}}</b></p>
+    
+        <p *ngIf="!comprobado_cp"></p>
+        </div>
+
+    <div fxFlex="50"  fxFlexAlign="center" fxLayout="column" >
+
+        <button mat-raised-button (click)="seleccionar_zona()" [disabled]="zona.id == 0">Elegir Zona</button>
+
+    </div>
+
+
+</div>

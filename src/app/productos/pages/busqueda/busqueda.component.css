@@ -1,0 +1,25 @@
+.btn-comprar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 1em;
+    background-color: transparent;
+    justify-content: center;
+    margin-bottom:55px;
+}
+
+.selector_categoria{
+    color:rgba(0, 0, 0, 0.87);
+    background-color: transparent;
+    border: 0;
+    width: 90px;
+    position: fixed;
+    left: 0;
+    color: transparent;
+}
+
+.flecha{
+    color: black;
+}
+

@@ -1,0 +1,161 @@
+<mat-grid-list cols="1" *ngIf="!infoUser; else divProducto">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divProducto >
+
+
+    <div fxLayout="row wrap"
+        fxLayout.xs="row"
+        fxLayoutAlign="center"
+        class="header-usuario"
+        >
+                <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="30"
+                    fxLayoutAlign="center"
+                    >
+                     <img class="imagen-usuario" [src]="infoUser | imagenuser" onError="this.src='assets/productos/no-profile-image.png'">
+               </div>
+
+               <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="50"
+                    fxLayoutAlign="center"
+                    fxLayout.xs="row wrap">
+
+                    <h3><b>{{infoUser.nombre_empresa | slice:0:14}}</b> <!--| slice:0:14-->
+                    <bar-rating [rate]="media_valoraciones" readOnly="true" [max]="5" >
+                        <ng-template ratingInactive>
+                           <fa-icon
+                             [icon]="['far', 'star']"
+                             [fixedWidth]="true"
+                             size="sm"
+                             style="color: black "
+                           ></fa-icon>
+                         </ng-template>
+                         <ng-template ratingActive>
+                           <fa-icon
+                             [icon]="['fas', 'star']"
+                             [fixedWidth]="true"
+                             size="sm"
+                             style="color: black"
+                           ></fa-icon>
+                         </ng-template>
+                         <ng-template ratingFraction>
+                           <fa-icon
+                             [icon]="['fas', 'star-half-alt']"
+                             [fixedWidth]="true"
+                             size="sm"
+                             style="color: black "
+                           ></fa-icon>
+                         </ng-template>
+                       </bar-rating>  </h3>
+                     
+               </div>
+
+               <div fxFlex="33"
+                    fxFlex.lg="33"
+                    fxFlex.sm="33"
+                    fxFlex.xs="20"
+                    fxLayoutAlign="center"
+                    fxLayout.xs="row wrap"
+                    >
+                    
+                     <button (click)="add_favorito()"><mat-icon style="border-color: black;">{{icono_fav}}</mat-icon></button>
+    
+               </div>
+
+               
+
+             
+            </div>
+
+           <!-- <div fxLayout="row wrap"
+                fxLayout.xs="100"
+                fxLayoutAlign="center"
+                class="icono"
+                >
+                <mat-icon>bar_chart</mat-icon><span>2 Ventas</span>
+    
+            </div>-->
+
+             <div fxLayout="row wrap"
+        fxLayout.xs="100"
+        fxLayoutAlign="center"
+        class="header-ubicacion"
+        >     
+            <mat-icon>place</mat-icon><span>{{infoUser.ubicacion | slice:0:40}}...</span>
+
+        </div>
+
+            
+
+           
+
+
+            <div style="padding: 60px">
+  
+            </div>
+
+
+            <mat-tab-group  mat-align-tabs="center" >
+    
+              <mat-tab label="En Venta ">
+                    <div fxLayout="row wrap"
+                        fxLayout.xs="row wrap"
+                        fxLayoutAlign="center"
+                        >
+
+                        <p *ngIf="productos.length == 0" style="text-align:center;margin-top: 30px;">No hay productos a la venta</p>
+
+
+                      <div fxFlex="50"
+                            fxFlex.lg="33"
+                            fxFlex.sm="50"
+                            fxFlex.xs="50"
+                          class="caja-producto"
+                          fxLayoutAlign="center"
+                          *ngFor="let producto of productos">
+          
+                        <app-producto-tarjeta [producto]="producto" [esproductor]="true"></app-producto-tarjeta>
+                      </div>
+
+                    </div>
+              </mat-tab>
+              <mat-tab label="Opiniones">
+
+                <div fxLayout="row"
+                fxLayoutGap="20px"
+                fxLayout.xs="column"
+                fxLayoutAlign="center"
+                style="margin-top:30px;">
+                <p *ngIf="comentarios.length == 0" style="text-align:center;">No hay comentarios publicados</p>
+                  <div fxLayout="column"
+                      fxLayout.xs="column"
+                      style="padding-left: 20px;padding-right: 20px;"
+                      *ngFor="let comentario of comentarios">
+            
+                    <app-comentarios-lista [comentario]="comentario"></app-comentarios-lista>
+                    
+            
+                  </div> 
+           
+                </div>
+              </mat-tab>
+              <mat-tab label="Información">
+
+                <app-info-productor [infoUser]="infoUser"></app-info-productor>
+
+              </mat-tab>
+              
+            </mat-tab-group>
+            
+
+
+
+</ng-template>

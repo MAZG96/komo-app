@@ -1,0 +1,8 @@
+.mat-raised-button{
+    width: 100%;
+    margin: 3px;
+}
+
+.mat-dialog-actions .mat-button-base+.mat-button-base, .mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{
+    margin-left: 3px!important;
+}

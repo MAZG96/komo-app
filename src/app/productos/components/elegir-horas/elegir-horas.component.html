@@ -1,0 +1,54 @@
+<div fxFlex="100"  fxFlexAlign="center center" fxLayout="column">
+
+    <h3>Añadir Horario 1</h3>
+    <div fxLayout="row" 
+         fxLayout.xs="column" 
+         fxFlexAlign="center"
+         >
+
+
+<mat-form-field >
+    <mat-label>Hora de apertura</mat-label>
+    <input matInput type="time" [(ngModel)]="hora_apertura_m" >
+</mat-form-field>
+
+<mat-form-field >
+    <mat-label>Hora de cierre</mat-label>
+    <input matInput type="time" [(ngModel)]="hora_cierre_m">
+</mat-form-field>
+
+    </div>
+
+    <h3>Añadir Horario 2</h3>
+    <button mat-button *ngIf="!horario2" (click)="add_horario2()"><mat-icon>add</mat-icon></button>
+    <div fxLayout="row" 
+         fxLayout.xs="column" 
+         fxFlexAlign="center"
+         *ngIf="horario2"
+         >
+
+
+<mat-form-field >
+    <mat-label>Hora de apertura</mat-label>
+    <input matInput type="time" [(ngModel)]="hora_apertura_t">
+</mat-form-field>
+
+<mat-form-field >
+    <mat-label>Hora de cierre</mat-label>
+    <input matInput type="time" [(ngModel)]="hora_cierre_t">
+</mat-form-field>
+<button mat-button *ngIf="horario2" (click)="remove_horario2()"><mat-icon>remove</mat-icon></button>
+    </div>
+
+    <div fxLayout="row" 
+         fxLayout.xs="row" 
+         fxFlexAlign="center"
+         >
+
+         <button mat-button (click)="guardar()">Guardar Horario {{dia_semana}}</button>
+
+
+    </div>
+
+
+</div>

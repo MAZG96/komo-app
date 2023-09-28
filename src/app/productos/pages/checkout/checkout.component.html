@@ -1,0 +1,84 @@
+<mat-grid-list cols="1" *ngIf="!pedido ; else divProducto">
+  <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<ng-template #divProducto >
+
+<div class="container" style="margin-top:20px;">
+  
+    <mat-expansion-panel [expanded]="true" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>credit_card</mat-icon>
+            <b>Método de Pago</b>
+            
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+        <div fxLayout="row wrap"
+              fxLayout.xs="row wrap"
+              fxLayoutAlign="center">
+  
+          <div fxFlex="100"
+          fxFlex.lg="100"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          >
+          <app-pago-stripe [pedido]="pedido"></app-pago-stripe>
+  
+          </div>
+  
+      </div>
+      </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        <mat-icon>send</mat-icon>
+           <b> Datos de Facturación</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <b>
+          <p>Nombre: {{pedido.nombre}}</p>
+          <p>Apellidos: {{pedido.apellidos}}</p>
+          <p>Direccion: {{pedido.calle}}, {{pedido.piso}}, {{pedido.localidad}}, {{pedido.codigo_postal}}</p>
+          <p>Provincia: {{pedido.provincia}}</p>
+          <p>Telefono: {{pedido.telefono}}</p>
+          <p>Precio total: {{pedido.total}} €</p>
+        </b>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>shopping_cart</mat-icon> 
+           <b> Listado de Productos</b>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row wrap"
+      fxLayout.xs="row wrap"
+      fxLayoutAlign="center">
+
+        <div fxFlex="100"
+        fxFlex.lg="100"
+        fxFlex.sm="100"
+        fxFlex.xs="100"
+        fxFlexAlign="center"
+        *ngFor="let item of cart">
+            <app-item-pedido [item]="item"></app-item-pedido>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel>
+  
+    
+  
+
+</div>
+
+</ng-template>

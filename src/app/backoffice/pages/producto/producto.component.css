@@ -1,0 +1,31 @@
+
+
+
+  .imagen-usuario{
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
+  }
+
+  .img-prod {
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 230px;
+   
+  }
+
+  .header-usuario{
+    width: 100%;
+    vertical-align: middle;
+    padding-top: 5px;
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    background-color: white;
+    justify-content: center;
+    margin-top:55px;
+  }

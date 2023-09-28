@@ -1,0 +1,35 @@
+h2{
+    text-align: center;
+}
+
+.example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+.example-headers-align .mat-expansion-panel-header-description {
+justify-content: space-between;
+align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+margin-left: 8px;
+}
+
+.toolbarNav{
+  display: none;
+}
+
+@media screen and (min-width: 768px) and  (max-width: 1024px){
+  .container{
+      padding-left: 20%;
+    padding-right: 20%;
+  }
+}
+
+@media screen and (min-width: 1024px){
+
+  .container{
+      padding-left: 30%;
+    padding-right: 30%;
+  }
+}

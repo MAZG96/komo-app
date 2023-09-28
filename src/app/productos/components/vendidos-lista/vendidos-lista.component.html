@@ -1,0 +1,40 @@
+
+ 
+<mat-card class="example-card" 
+          *ngFor="let indice of indices_vendidos; let i = index"
+          style="border: 1px solid black; margin-bottom: 15px;">
+     
+          <app-detalles-pedido [id_pedido]="indice"></app-detalles-pedido>
+
+
+     <div fxLayout="row wrap"
+     fxLayout.xs="row wrap"
+     fxLayoutAlign="center"
+     > 
+
+          <div fxFlex="100"
+               fxFlex.lg="100"
+               fxFlex.sm="100"
+               fxFlex.xs="100"
+               fxFlexAlign="center"
+               style="margin-bottom: 15px"
+               *ngFor="let item of items_vendidos[indice]">
+
+               <app-item-vendidos [item]="item"></app-item-vendidos>
+
+          </div>
+
+     </div>
+ 
+     </mat-card>
+
+    
+    
+    <!--<mat-toolbar class="total_cart">
+         <h1 class="total">Monedero: {{total_vendido | number : '1.2-2'}} EUR</h1>
+
+       </mat-toolbar>
+     -->
+
+
+

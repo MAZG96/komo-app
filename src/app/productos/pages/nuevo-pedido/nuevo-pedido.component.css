@@ -1,0 +1,48 @@
+.example-card {
+    max-width: 100%;
+    margin-bottom: 8px;
+    align-items: center;
+
+  }
+
+  .mat-card-sm-image{
+    width: 100px;    
+    height: 100px;
+    object-fit: cover;
+}
+
+.example-section{
+  margin-bottom: -20px;
+}
+
+.checkbox-recoger{
+  color: black;
+}
+
+a:hover{
+    font-weight: bold;
+    color: black;
+}
+
+a{
+    display: flex;
+}
+
+mat-card-title{
+  font-size: 16px;
+}
+
+mat-card-subtitle{
+    display: flex;
+    font-size: 7px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.bloque{
+    margin-top: 10px;
+    height: 310px;
+    overflow: auto;
+    text-align:justify;
+
+}

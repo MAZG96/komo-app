@@ -1,0 +1,129 @@
+@media only screen and (min-width: 600px) {
+    img{
+      object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+      height: 300px;
+    }
+    mat-grid-list{
+      margin-bottom:-65px;
+    }
+
+    .cantidad_p{
+      background-color:#FFFFFF;
+      border: 1px solid black;
+      border-radius: 100px;
+      padding-left:10px;
+      padding-right:10px;
+    }
+  
+    
+
+    .boton-carrito{
+      z-index: 3;
+      background-color:rgba(255,255,255,0.7);
+      color: black;
+      border-radius: 100px;
+      padding: 1px;
+      font-size: 20px;
+  
+    }
+
+    .boton-carro{
+      transform: scale(1.5);
+      z-index: 3;
+      background-color:rgba(255,255,255,0.7);
+      color: black;
+      border-radius: 100px;
+      padding: 1px;
+      font-size: 20px;
+    }
+
+    .boton-carro:hover{
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .cantidad{
+      background-color:rgba(255,255,255,0.7);
+      border-radius: 100px;
+      padding-left:10px;
+      padding-right:10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .cantidad{
+    background-color:rgba(255,255,255,0.7);
+    border-radius: 100px;
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .cantidad_p{
+    background-color:#FFFFFF;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+mat-grid-list{
+    margin-bottom:-35px;
+    text-align: center;
+  }
+
+  
+
+  .boton-carro{
+    z-index: 3;
+    background-color: rgba(255,255,255,0.7);
+    color: black;
+    border-radius: 100px;
+    padding: 1px;
+    font-size: 20px;
+
+  }
+
+  .boton_producto{
+    z-index: 3;
+    background-color:#FFFFFF;    
+    color: black;
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 1px;
+    font-size: 20px;
+
+  }
+
+  .boton-carrito{
+    
+    z-index: 3;
+    background-color: rgba(255,255,255,0.7);   
+    color: black;
+    border-radius: 100px;
+    padding: 1px;
+    font-size: 20px;
+
+  }
+
+  .cantidad-carrito{
+    
+    z-index: 3;
+    background-color:black;    
+    color: white;
+    border-radius: 100px;
+    font-size: 17px;
+
+  }
+
+  h1{
+    font-size: 20px;
+  }
+
+}

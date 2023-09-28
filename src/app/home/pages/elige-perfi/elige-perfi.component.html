@@ -1,0 +1,44 @@
+<div fxLayout="row wrap"
+fxLayout.xs="row wrap"
+fxLayoutAlign="center"
+class="cuerpo"
+>
+
+
+    
+    <h3><small>Has iniciado sesión con éxito: {{usuario.email}}</small><br>¿Tienes perfil de productor?¿O quieres ver nuestros productos?</h3>
+
+    <div fxFlex="100"
+    fxFlex.lg="100"
+    fxFlex.sm="100"
+    fxFlex.xs="100"
+    >
+
+    <button mat-raised-button 
+    color="primary"
+    class="boton-home"
+    (click)="ir_productor()"
+    >
+    Soy Productor
+    </button>
+
+    </div>
+
+    <div fxFlex="100"
+    fxFlex.lg="100"
+    fxFlex.sm="100"
+    fxFlex.xs="100"
+    >
+
+    <button mat-raised-button 
+    color="primary"
+    class="boton-home"
+    (click)="ir_pedidos()"
+    >
+    Quiero ver Productos
+    </button>
+
+    </div>
+
+</div>
+

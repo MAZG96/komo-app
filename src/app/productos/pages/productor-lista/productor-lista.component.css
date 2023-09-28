@@ -1,0 +1,119 @@
+.header-usuario{
+    width: 100%;
+    vertical-align: middle;
+    padding-top: 5px;
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    background-color: white;
+    justify-content: center;
+    margin-top:55px;
+  }
+
+  @media screen and (min-width: 768px) and  (max-width: 1024px){
+    .header-usuario{
+      width: 100%;
+      vertical-align: middle;
+      position: fixed;
+      top: 4px;
+      left:0;
+      z-index: 10;
+      padding-left: 20%;
+      padding-right: 20%;
+      padding-bottom: 20px;
+      background-color: white;
+      justify-content: center;
+      margin-top:55px;
+    }
+
+    .header-ubicacion{
+      width: 100%;
+      vertical-align: middle;
+      position: fixed;
+      padding-top: 2px;
+      top: 0;
+      left:0;
+      z-index: 10;
+      padding-left: 20px;
+      padding-right: 20px;
+      justify-content: center;
+      margin-top:155px;
+    }
+  
+  }
+
+  @media screen and (min-width: 1024px){
+    .header-usuario{
+      width: 100%;
+      vertical-align: middle;
+      position: fixed;
+      top: 4px;
+      left:0;
+      z-index: 10;
+      padding-left: 30%;
+      padding-right: 30%;
+      padding-bottom: 20px;
+      background-color: white;
+      justify-content: center;
+      margin-top:55px;
+    }
+
+    .header-ubicacion{
+      width: 100%;
+      vertical-align: middle;
+      position: fixed;
+      padding-top: 2px;
+      top: 0;
+      left:0;
+      z-index: 10;
+      padding-left: 20px;
+      padding-right: 20px;
+      justify-content: center;
+      margin-top:155px;
+    }
+  
+  }
+
+  .icono{
+    width: 100%;
+    vertical-align: middle;
+    padding-top: 3px;
+
+    justify-content: center;
+  }
+
+  .header-ubicacion{
+    width: 100%;
+    vertical-align: middle;
+    position: fixed;
+    padding-top: 2px;
+    top: 0;
+    left:0;
+    z-index: 10;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: white;
+    justify-content: center;
+    margin-top:145px;
+  }
+
+
+
+  .imagen-usuario{
+    object-fit: cover; /* no poner tamaño del width para que sea responsive*/
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
+  }
+
+  .caja-producto{
+    display: flex;
+    flex: auto;
+    text-align: center;
+  }
