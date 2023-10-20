@@ -85,9 +85,9 @@ export class CarritoComponent implements OnInit,AfterViewInit {
     else if(this.recogida_n > 0){
       this.cargar_venta(2);
     }
-    else if(this.frio_n > 0){
+    /*else if(this.frio_n > 0){
       this.cargar_venta(3);
-    }
+    }*/
 
   }
 
@@ -151,6 +151,20 @@ comprobar_disponibilidad(){
     
   }
 
+
+  get_peso_producto(item : ItemCarrito) : ItemCarrito{
+
+    this.productoService.getProductoPorId(item.id_producto)
+      .subscribe(producto => {
+        item.peso_producto = producto.peso_total;
+        item.cantidad_producto = producto.cantidad;
+
+        return item;
+      })
+
+    return item;
+  }
+
   cargar_venta(tipo : number){
     this.tipo_venta = tipo;
     this.sharedService.Settipo_venta = this.tipo_venta;
@@ -163,7 +177,9 @@ comprobar_disponibilidad(){
       let cart : ItemCarrito[];
 
       for(let item of this.cart){
-        if(item.recogida == 'envio'){
+        if(item.recogida == 'envio' || item.recogida == 'frio'){
+          item = this.get_peso_producto(item);
+
           this.carrito_tipo_venta.push(item);
         }
       }
@@ -175,6 +191,9 @@ comprobar_disponibilidad(){
 
       for(let item of this.cart){
         if(item.recogida == 'unificado'){
+
+          item = this.get_peso_producto(item);
+
           this.carrito_tipo_venta.push(item);
         }
       }
@@ -186,12 +205,15 @@ comprobar_disponibilidad(){
 
       for(let item of this.cart){
         if(item.recogida == 'recogida'){
+
+          item = this.get_peso_producto(item);
+          
           this.carrito_tipo_venta.push(item);
         }
       }
 
 
-    }else if(this.tipo_venta == 3){ //FRIO
+    }/*else if(this.tipo_venta == 3){ //FRIO
 
       let cart : ItemCarrito[];
 
@@ -202,7 +224,7 @@ comprobar_disponibilidad(){
       }
 
 
-    }
+    }*/
 
 
     for(let item of this.carrito_tipo_venta){

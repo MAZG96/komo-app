@@ -221,6 +221,7 @@ export class DetallesPedidoComponent implements OnInit {
       maxWidth: 'calc(100vw - 50px)',
       data: this.item_uno
     });
+    
 
     dialogRef.afterClosed().subscribe(result => {
       

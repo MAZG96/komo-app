@@ -111,6 +111,7 @@ export class DatosPedidoComponent implements OnInit {
     this.pedido.tipo_venta = this.sharedService.Gettipo_venta;
 
 
+    console.log( this.sharedService.Getcarro_compra)
     
 
     this.recogida = this.todos_recogidas();
@@ -118,7 +119,6 @@ export class DatosPedidoComponent implements OnInit {
     if(this.pedido === null || this.cart.length == 0){
       this.router.navigateByUrl("/productos/listado");
     }
-
 
     this.infoUsuarioService.getInfoUsuarios()
       .subscribe(usuarios => {
@@ -261,6 +261,8 @@ export class DatosPedidoComponent implements OnInit {
             id_productor: this.sharedService.Getcarro_compra[_i].id_productor,
             recogida: this.sharedService.Getcarro_compra[_i].recogida,
             id_ups: ""+this.sharedService.Getcarro_compra[_i].zona,
+            peso_producto: this.sharedService.Getcarro_compra[_i].peso_producto,
+            cantidad_producto: this.sharedService.Getcarro_compra[_i].cantidad_producto,
             pago_recogida: this.sharedService.Getcarro_compra[_i].pago_recogida,
             id_pedido: pedido.id
           }
@@ -268,6 +270,9 @@ export class DatosPedidoComponent implements OnInit {
 
           let cart = JSON.parse(localStorage.getItem("cart")!);
             
+
+          // borrar productos que se acaban de comprar del carrito
+
           for(let item of cart){
             for(let y of this.sharedService.Getcarro_compra){
 

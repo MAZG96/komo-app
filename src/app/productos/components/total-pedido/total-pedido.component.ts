@@ -61,6 +61,8 @@ export class TotalPedidoComponent implements OnInit {
 
   peso_total_paquete: number = 0;
 
+  peso_total_frio : number = 0;
+
   itemMBE: String[] = [];
 
   precioUPS!: PrecioUPS;
@@ -115,9 +117,14 @@ export class TotalPedidoComponent implements OnInit {
                   for(let item of this.carrito_unificado){
                       if(item.id_producto == producto.id){
 
+                          if(item.recogida == 'frio'){
+                            this.peso_total_frio += producto.peso_total*item.cantidad;
+                          }else{
+                            this.peso_total_paquete += producto.peso_total*item.cantidad;
+                          }
 
-                          this.peso_total_paquete += producto.peso_total*item.cantidad;
 
+                          
                           //this.itemMBE.push('<Item><Weight>'+producto.peso_total*item.cantidad+'</Weight><Dimensions></Dimensions></Item>');
                           
                       }
@@ -171,8 +178,14 @@ export class TotalPedidoComponent implements OnInit {
 
     })*/
 
+    if(this.peso_total_frio != 0){
+      this.total_envio = this.pedidoService.calcular_precio_envio_frio(this.peso_total_frio);
+    }
+    else{
+      this.total_envio = this.pedidoService.calcular_precio_envio(this.peso_total_paquete);
+    }
 
-    this.total_envio = this.pedidoService.calcular_precio_envio(this.peso_total_paquete);
+    
 
     this.total = this.total_envio+this.total_unificado+(this.total_unificado*0.03);
 

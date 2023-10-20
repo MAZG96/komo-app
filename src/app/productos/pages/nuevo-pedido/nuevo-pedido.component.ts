@@ -16,6 +16,7 @@ import { UPSService } from '../../services/ups.service';
 import { Pedido } from '../../interfaces/pedidos.interface';
 import { ZonaService } from 'src/app/backoffice/services/zona.service';
 import { Zona } from '../../interfaces/zona.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-nuevo-pedido',
@@ -27,11 +28,17 @@ export class NuevoPedidoComponent implements OnInit {
   constructor(@Optional() @Inject(MAT_DIALOG_DATA) public item: ItemCarrito,
               private ngxXmlToJsonService: NgxXmlToJsonService,
               private upsService: UPSService,
+              private authService: AuthService,
               private pedidoService: PedidosService,
               private zonaService: ZonaService,
               private productoService: ProductosService,
               private infousuarioService: InfoUsuarioService,
               public dialog: MatDialog) { }
+
+
+  get usuario(){
+    return this.authService.auth;
+  }
 
   puntos_ups!:UPSPoint;
 

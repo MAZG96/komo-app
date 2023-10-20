@@ -9,6 +9,7 @@
     <mat-card-title-group >
       <img mat-card-sm-image [src]="item.foto" >
       <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
+      <mat-card-subtitle>{{item.cantidad_producto}}</mat-card-subtitle>
       <mat-card-subtitle>{{item.precio}}EUR x {{item.cantidad}}uds.</mat-card-subtitle>
       <mat-card-subtitle><b>Subtotal:</b> {{item.precio * item.cantidad}}EUR</mat-card-subtitle>  
 

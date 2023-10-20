@@ -29,6 +29,7 @@ const routes: Routes = [
     
   },
   {
+    
     path: 'productos',
     loadChildren: () => import('./productos/productos.module').then( m => m.ProductosModule ),
   },
@@ -70,9 +71,6 @@ const routes: Routes = [
   { path: 'textos-legales', 
   component: TextosLegalesComponent,
   },
-
-
-
   {
     path: '**',
     redirectTo: ''

@@ -496,6 +496,9 @@ export class InfoUsuarioComponent implements OnInit {
   guardar_recogida(){
 
     
+    console.log(this.user)
+    console.log(this.prov)
+    console.log(this.localidad)
 
     if( this.user.recogida == 1) {
 
@@ -530,10 +533,14 @@ export class InfoUsuarioComponent implements OnInit {
 
   guardar_individual(){
 
+
+
     if( this.user.envio_individual == 1) {
 
-      if( this.calle!.trim() == ""  || this.prov!.trim() == "" || this.localidad!.trim() == "") {
-        this.mostrarSnakbar("Rellene los datos para el envío refrigerado*")
+          
+
+      if( this.calle.trim() == '' || this.prov.trim() == '' || this.localidad.trim() == '') {
+        this.mostrarSnakbar("Rellene los datos para el envío individual")
         return;
       }
     }
@@ -541,7 +548,7 @@ export class InfoUsuarioComponent implements OnInit {
     if( this.user.envio_individual == 0) {
 
       if( this.calle!.trim() == ""  || this.prov!.trim() == "" || this.localidad!.trim() == "") {
-        this.mostrarSnakbar("Rellene los datos para el envío refrigerado*")
+        this.mostrarSnakbar("Rellene los datos para el envío individual*")
         return;
       }
     }else{

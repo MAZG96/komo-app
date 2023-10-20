@@ -23,13 +23,20 @@
     <div fxFlex="50"  fxFlexAlign="center" fxLayout="column">
 
         <p *ngIf="zona.provincia">Zona: <b>{{zona.provincia}}</b></p>
+
+        <p *ngIf="!zona.provincia && comprobado_cp">No hay zonas disponibles para tu código postal</p>
     
-        <p *ngIf="!comprobado_cp"></p>
+        <p *ngIf="!comprobado_cp">Introduce un código postal correcto*</p>
         </div>
 
-    <div fxFlex="50"  fxFlexAlign="center" fxLayout="column" >
+    <div fxFlex="50"  fxFlexAlign="center" fxLayout="row" >
 
         <button mat-raised-button (click)="seleccionar_zona()" [disabled]="zona.id == 0">Elegir Zona</button>
+
+
+        <button mat-mini-fab (click)="salir()" aria-label="salir del pop-up" style="margin-left: 5px;">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
 
     </div>
 

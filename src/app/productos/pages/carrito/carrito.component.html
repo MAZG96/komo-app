@@ -19,10 +19,10 @@
   [ngClass]="{'seleccion': tipo_venta != 2, 'seleccion-activa': tipo_venta == 2}"
   (click)="recogida_n == 0 ||cargar_venta(2)">
   Recogida({{recogida_n}})</p>
-  <p 
+  <!--<p 
   [ngClass]="{'seleccion': tipo_venta != 3, 'seleccion-activa': tipo_venta == 3}"
   (click)="frio_n == 0 ||cargar_venta(3)">
-  Frío({{frio_n}})</p>
+  Frío({{frio_n}})</p>-->
 
 </div>
 
@@ -46,7 +46,7 @@
               <mat-card-title >{{item.estado | titlecase}}</mat-card-title>
               <img mat-card-sm-image [src]="item | carrito" >
               <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
-              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <mat-card-subtitle>{{item.precio}}EUR / <small>{{item.cantidad_producto}}</small></mat-card-subtitle>
               <mat-card-title style="width:100px;"><app-boton-carro [id_producto]="item.id_producto" [esCarrito]="true" (click)="cambiar_total()"></app-boton-carro></mat-card-title>   
               <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
             </mat-card-title-group>
@@ -56,7 +56,7 @@
             <mat-card-title-group >
               <mat-card-subtitle class="no-stock">{{item.estado| titlecase}}</mat-card-subtitle>
               <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
-              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <mat-card-subtitle>{{item.precio}}EUR / <small>{{item.cantidad_producto}}</small></mat-card-subtitle>
               <img mat-card-sm-image [src]="item | carrito" >
               <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
             </mat-card-title-group>
@@ -66,7 +66,7 @@
             <mat-card-title-group >
               <mat-card-subtitle class="no-stock">{{item.estado| titlecase}}</mat-card-subtitle>
               <mat-card-title >{{item.nombre | titlecase}}</mat-card-title>
-              <mat-card-subtitle>{{item.precio}}EUR</mat-card-subtitle>
+              <mat-card-subtitle>{{item.precio}}EUR / <small>{{item.cantidad_producto}}</small></mat-card-subtitle>
               <img mat-card-sm-image [src]="item | carrito" >
               <button class="btn-delete" (click)="delete(item)"><mat-icon>delete_outline</mat-icon></button>
             </mat-card-title-group>

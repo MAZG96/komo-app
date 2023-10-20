@@ -69,7 +69,7 @@ export class ElegirzonaComponent implements OnInit {
 
     this.zonaService.getZonaCP(this.codigo_postal)
       .subscribe(zona => {
-        if(zona.provincia){
+        if(zona){
           this.zona = zona
           console.log("hola")
         }
@@ -79,7 +79,11 @@ export class ElegirzonaComponent implements OnInit {
   seleccionar_zona(){
 
     this.zonaService.getZonaCP(this.codigo_postal)
-      .subscribe(zona => this.zona = zona)
+      .subscribe(zona => {
+        if(zona){
+          this.zona = zona;
+        }
+      })
 
     localStorage.setItem("zona_busqueda", JSON.stringify(this.zona))
     this.salir();

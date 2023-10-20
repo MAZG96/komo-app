@@ -11,6 +11,8 @@ export interface ItemCarrito {
     recogida?:      string;
     pago_recogida?: number;
     zona?:          number;
+    peso_producto?: number;
+    cantidad_producto?: string;
     id_ups?:        string;
     frio?:          number;
 }
@@ -29,5 +31,7 @@ export interface ItemCarritoZona {
     recogida?:      string;
     pago_recogida?: number;
     zona:          number;
+    peso_producto?: number;
+    cantidad_producto?: string;
     frio?:          number;
 }

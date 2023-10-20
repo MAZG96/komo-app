@@ -59,6 +59,19 @@ import { AuthService } from '../../services/auth.service';
     display:block !important;
     }
 
+
+
+    .login100-form{
+      text-align: center;
+      display: flex;
+      /* margin: auto; */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+
+
   img{
     padding: 20px;
     width: 100%;
@@ -112,6 +125,8 @@ export class RegistroComponent {
         this.authService.registro( name, email, password )
         .subscribe( ok =>{
 
+          console.log(ok)
+
           if(ok === true){
             this.texto_error ="Hemos enviado un mail a tu cuenta de correo para activar tu cuenta creada en KOMOLOCALFOODS"
             this.logueado = true;
@@ -126,12 +141,9 @@ export class RegistroComponent {
             }
             else{
               
-              if(ok === undefined){
-                this.texto_error = "Comprueba el correo"
-                this.error = true;
-              }else{
-                this.texto_error = ok
-              }
+              this.texto_error = "Este correo está asociado a una cuenta"
+              this.error = true;
+
             }
             this.error = true;
           }

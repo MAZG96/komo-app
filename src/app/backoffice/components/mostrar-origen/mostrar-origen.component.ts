@@ -54,22 +54,43 @@ export class MostrarOrigenComponent implements OnInit {
         
       })
 
+
+      
+
       this.productoService.getProductos()
       .subscribe(productos => {
-        for(let o of productos){
+
+        if(this.item_pedidos[0].peso_producto){
           for(let item of this.item_pedidos){
 
-            if(o.id == item.id_producto){
-              this.peso_total += o.peso_total;
+              this.peso_total += Number(item.peso_producto);
 
               this.precio_comision += (item.precio*item.cantidad)
             }
 
           }
+          else{
 
-          this.precio_envio = this.pedidoService.calcular_precio_envio(this.peso_total);
+            for(let o of productos){
+              for(let item of this.item_pedidos){
+    
+                if(o.id == item.id_producto){
+                  this.peso_total += o.peso_total;
+    
+                  this.precio_comision += (item.precio*item.cantidad)
+                }
+    
+              }
 
+          }    
         }
+
+        if(this.item_pedidos[0].recogida == 'frio'){
+          this.precio_envio = this.pedidoService.calcular_precio_envio_frio(this.peso_total);
+        }else{
+          this.precio_envio = this.pedidoService.calcular_precio_envio(this.peso_total);
+        }
+
       })
 
   }

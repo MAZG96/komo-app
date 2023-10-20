@@ -14,119 +14,12 @@ import { UnificarComponent } from '../../components/unificar/unificar.component'
 import { CategoriaComponent } from '../../components/categoria/categoria.component';
 import { Router } from '@angular/router';
 import { ElegirzonaComponent } from '../../components/elegirzona/elegirzona.component';
+import { TextoPopComponent } from '../../components/texto-pop/texto-pop.component';
 
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styles:[`
-
-  .seleccion{
-    font-weight: normal;
-    cursor: pointer;
-  }
-
-  .seleccion-activa{
-    font-weight: bold;
-    cursor: pointer;
-
-  }
-  
-  .flecha-volver{
-    display: none;
-  }
-
-  .lista-tipo{
-    flex-flow: row wrap;box-sizing: border-box;display: flex;place-content: stretch center;align-items: stretch;justify-content: space-around;
-  }
-
-  .btn-comprar{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 1em;
-    background-color: transparent;
-    justify-content: center;
-    margin-bottom:55px;
-  }
-
-  .selector_categoria{
-      color:rgba(0, 0, 0, 0.87);
-      background-color: transparent;
-      border: 0;
-      width: 90px;
-      position: fixed;
-      left: 0;
-      color: transparent;
-  }
-
-  .caja-producto{
-    display: flex;
-    flex: auto;
-    text-align:center;
-  }
-
-  .mat-chip-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
-  }
-
-  .flecha{
-      color: black;
-  }
-
-  .mat-chip{
-    background-color: white!important;
-    color: black;
-    border: 1px solid black;
-  }
-
-  .mat-chip:hover{
-    background-color: white!important;
-    color: black;
-    border: 1px solid black;
-  }
-
-  .mat-chip:active{
-    background-color: white!important;
-    color: black;
-    border: 1px solid black;
-  }
-
-  mat-icon{
-    color: black;
-    
-  }
-
-  .center {
-    margin: auto;
-    width: 100%;
-    padding: 10px;
-  }
-
-  .scrollmenu{
-    width:100%;
-    overflow: auto;
-  white-space: wrap;
-  }
-
-  mat-chip-list{
-    position: fixed;
-    padding: 10px;
-    top: 35px;
-    z-index: 1000;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    background-color: white;
-    border-bottom: 0px solid;
-  }
-
-  `]
+  styleUrls:['./listado.component.css']
 })
 
 export class ListadoComponent implements OnInit {
@@ -253,150 +146,7 @@ export class ListadoComponent implements OnInit {
 
     this.productos = [];
     
-    if(this.categoria_elegida != undefined){
-    this.productosService.getProductoPorIdCategoria(""+this.categoria_elegida.id)
-      .pipe(
-        switchMap(productos => {
-          if(productos.length != 0){
-
-            this.productos_copia = productos;
-            localStorage.setItem("productos",JSON.stringify(productos))
-          }
-          else{
-            this.productos = [];
-            this.productos_copia = [];
-           
-          }
-
-          return  this.infoUsuarioService.getInfoUsuarios().pipe()
-        })).subscribe(usuarios =>{
-      
-          this.usuarios = usuarios
-          if(localStorage.getItem("LOC")){
-            let lugar = JSON.parse((localStorage.getItem("LOC")!));
-      
-          for(let usuario of usuarios){
-            let from = turf.point([Number(usuario.coord_x), Number(usuario.coord_y)]);
-            let to = turf.point([lugar!.geometry.coordinates[0], lugar!.geometry.coordinates[1]]);
-            usuario.distancia_punto = turf.distance(from, to);
-            
-          }
-        }
-
-          for(let producto of this.productos_copia){
-            for(let usuario of usuarios){
-              if(producto.id_usuario == usuario.id_usuario){
-                producto.distancia_punto = usuario.distancia_punto;
-              }
-            }
-          }
-        
-          this.productos_copia.sort((n1,n2) => {
-            if (n1.distancia_punto! > n2.distancia_punto!) {
-                return 1;
-            }
-        
-            if (n1.distancia_punto! < n2.distancia_punto!) {
-                return -1;
-            }
-        
-            return 0;
-          });
-          this.productos = JSON.parse(localStorage.getItem("productos")!) || [];
-          localStorage.removeItem("productos");
-
-          this.productos = this.productos_copia;
-
-          
-          this.productos = JSON.parse(localStorage.getItem("productos")!) || [];
-          localStorage.removeItem("productos");
-
-          this.productos = this.productos_copia;
-
-          if(this.tipo_venta == 1){
-
-            let productos_resultado = [];
-
-            for(let producto of this.productos){
-            for(let usuario of usuarios){
-              if(usuario.id_usuario == producto.id_usuario && usuario.zona == this.zona.id){
-                
-                productos_resultado.push(producto)
-              }
-            }
-          }
-
-          if(productos_resultado.length == 0){
-            this.busqueda_vacia = true;
-          }
-          this.productos = productos_resultado;
-        
-        }
-        else if(this.tipo_venta == 2){ // ENVIO INDI
-          let productos_resultado = [];
-
-          for(let producto of this.productos){
-            for(let usuario of usuarios){
-              if(usuario.id_usuario == producto.id_usuario && usuario.recogida == 1){
-                
-                productos_resultado.push(producto)
-              }
-            }
-          }
-
-          if(productos_resultado.length == 0){
-            this.busqueda_vacia = true;
-          }
-            this.productos = productos_resultado;
-        }
-        if(this.tipo_venta == 3){ // TRANSPORTE
-
-          let productos_resultado = [];
-
-          for(let producto of this.productos){
-          for(let usuario of usuarios){
-            if(usuario.id_usuario == producto.id_usuario && usuario.envio_individual == 1){
-              
-              productos_resultado.push(producto)
-            }
-          }
-        }
-
-        if(productos_resultado.length == 0){
-          this.busqueda_vacia = true;
-        }
-        this.productos = productos_resultado;
-      
-      }
-      if(this.tipo_venta == 0){
-
-        let productos_resultado = [];
-
-        for(let producto of this.productos){
-        for(let usuario of usuarios){
-          if(usuario.id_usuario == producto.id_usuario && usuario.zona == this.zona.id){
-            
-            productos_resultado.push(producto)
-          }
-        }
-      }
-
-      if(productos_resultado.length == 0){
-        this.busqueda_vacia = true;
-      }
-      this.productos = productos_resultado;
     
-    } 
-      else{
-          if (this.productos.length == 0){
-            this.busqueda_vacia = true;
-
-          }
-        }
-
-        });
-
-      }else{
 
         this.productosService.getProductos()
       .pipe(
@@ -515,7 +265,7 @@ export class ListadoComponent implements OnInit {
 
         for(let producto of this.productos){
         for(let usuario of usuarios){
-          if(usuario.id_usuario == producto.id_usuario && usuario.envio_individual == 1){
+          if(usuario.id_usuario == producto.id_usuario && (usuario.envio_individual == 1 || usuario.envio_frio == 1)){
             
             productos_resultado.push(producto)
           }
@@ -536,7 +286,7 @@ export class ListadoComponent implements OnInit {
         }
 
         });
-      }
+      
   }
     
   seleccionar_categoria(categoria: Categoria): void {
@@ -628,5 +378,45 @@ export class ListadoComponent implements OnInit {
     });
   }
 
+
+  DialogTransporte(i:number): void {
+    const dialogRef = this.dialog.open(TextoPopComponent, {
+      maxHeight: 'calc(100% - 32px)',
+      maxWidth: 'calc(100vw - 32px)',
+      panelClass: 'full-screen-modal',
+      data: "Transporte: ¡Aquí puedes comprar productos de diferentes productores!, pero ten en cuenta que cada uno cobra su propio transporte. Te recomendamos comprar la mayoría de tus productos a un mismo productor para ahorrar en costos de envío. ¡Colabora y simplifica el proceso!"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+
+  DialogUnificar(i:number): void {
+    const dialogRef = this.dialog.open(TextoPopComponent, {
+      maxHeight: 'calc(100% - 32px)',
+      maxWidth: 'calc(100vw - 32px)',
+      panelClass: 'full-screen-modal',
+      data: "Unificar: ¡Esta opción es asombrosa, lo mejor es que puedes comprar de varios productores pagando un solo coste de transporte, y además, es más sostenible! ¡Aprovecha al máximo esta ventaja!"
+     });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
+  DialogRecogida(i:number): void {
+    const dialogRef = this.dialog.open(TextoPopComponent, {
+      maxHeight: 'calc(100% - 32px)',
+      maxWidth: 'calc(100vw - 32px)',
+      panelClass: 'full-screen-modal',
+      data: "Recogida: ¡Ven a visitar a los mejores productores locales de tu zona y recoge tus compras tú mismo, te están esperando con los brazos abiertos!"  
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 
   }  

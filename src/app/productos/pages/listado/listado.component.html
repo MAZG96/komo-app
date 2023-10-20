@@ -27,10 +27,10 @@
           [ngClass]="{'seleccion': tipo_venta != 2, 'seleccion-activa': tipo_venta == 2}"
           (click)="cargar_venta(2)">
           Recogida</p>
-          <p 
+          <!--<p 
           [ngClass]="{'seleccion': tipo_venta != 3, 'seleccion-activa': tipo_venta == 3}"
           (click)="cargar_venta(3)">
-          Frío</p>
+          Frío</p>-->
         <mat-chip-list style="justify-content: space-around;width: 100%;display: none;place-content: stretch center;align-items: stretch;">
             
           
@@ -58,10 +58,26 @@
      <div fxLayout="row wrap"
      fxLayout.xs="row wrap"
      fxLayoutAlign="center"
+     style="margin-top:30px"
      >
 
+          <div fxFlex="100"
+          fxLayoutAlign="center">
 
-     <h4 style="text-align: center;">Productos cercanos a <b>{{lugar_elegido.text_es}}</b></h4>
+               <h4 style="text-align: center;">Productos cercanos a <b>{{lugar_elegido.text_es}}</b></h4>
+               
+          </div>
+
+
+          <div fxFlex="100"
+          fxLayoutAlign="center"
+          style="padding: 5px;"
+          >
+               <button *ngIf="tipo_venta == 0" mat-raised-button class="info-venta" (click)="DialogTransporte()">¿Que es Transporte? </button>
+               <button *ngIf="tipo_venta == 1" mat-raised-button class="info-venta" (click)="DialogUnificar()">¿Que es Unificar? </button>
+               <button *ngIf="tipo_venta == 2" mat-raised-button class="info-venta" (click)="DialogRecogida()">¿Que es Recogida? </button>
+          </div>
+     
 
      </div>
 
